@@ -12,7 +12,7 @@ export const getInvolvedSections = [
       },
       {
         title: 'Direct Financial Gift',
-        description: 'Support pediatric dialysis sessions, essential medicines, and corrective urological surgeries for low-income families with 80G tax benefits.',
+        description: 'Support pediatric dialysis sessions, essential medicines, and corrective urological surgeries for low-income families.',
         actionText: 'Make a Contribution',
         actionHref: '/donate'
       },

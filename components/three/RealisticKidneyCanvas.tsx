@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Rotate3d, Play, Pause, ZoomIn, ZoomOut, RotateCcw, Eye, Compass, Layers } from 'lucide-react';
+import { Rotate3d, Play, Pause, ZoomIn, ZoomOut, RotateCcw, Eye, Compass } from 'lucide-react';
 
 interface RealisticKidneyCanvasProps {
   className?: string;
@@ -15,7 +15,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
   // UI state for controls
   const [viewMode, setViewMode] = useState<'pair' | 'single'>('pair');
   const [isAutoRotating, setIsAutoRotating] = useState(true);
-  const [showLabels, setShowLabels] = useState(true);
+  const [showLabels, setShowLabels] = useState(false);
   const [activePreset, setActivePreset] = useState<'front' | 'back' | 'hilum' | 'free'>('front');
 
   // Callback refs to control 3D scene from React state
@@ -35,12 +35,12 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
 
     let animationFrameId: number;
     let width = container.clientWidth || 700;
-    let height = container.clientHeight || 720;
+    let height = container.clientHeight || 760;
 
-    // SCENE & CAMERA
+    // SCENE & CAMERA (Sufficient distance so kidneys are perfectly framed, not overly zoomed)
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
-    camera.position.set(0, 1, 34);
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+    camera.position.set(0, 0.5, 48);
 
     // RENDERER
     const renderer = new THREE.WebGLRenderer({
@@ -60,35 +60,35 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enableZoom = true;
-    controls.minDistance = 14;
-    controls.maxDistance = 60;
+    controls.minDistance = 22;
+    controls.maxDistance = 75;
     controls.autoRotate = !prefersReducedMotion && isAutoRotating;
-    controls.autoRotateSpeed = 1.0;
-    controls.target.set(0, 0, 0);
+    controls.autoRotateSpeed = 0.9;
+    controls.target.set(0, -0.5, 0);
 
-    // USER INTERACTION DETECTION
+    // User interaction
     controls.addEventListener('start', () => {
       setActivePreset('free');
     });
 
-    // LIGHTING SETUP FOR MEDICAL REALISM
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+    // LIGHTING SETUP FOR REFINED MEDICAL ILLUMINATION
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
     scene.add(ambientLight);
 
-    const mainKeyLight = new THREE.DirectionalLight(0xfff5ea, 1.8);
-    mainKeyLight.position.set(18, 22, 24);
+    const mainKeyLight = new THREE.DirectionalLight(0xfff5eb, 1.8);
+    mainKeyLight.position.set(20, 24, 25);
     scene.add(mainKeyLight);
 
-    const secondaryFillLight = new THREE.DirectionalLight(0xbad2e8, 1.1);
-    secondaryFillLight.position.set(-20, -10, 15);
+    const secondaryFillLight = new THREE.DirectionalLight(0xbad2e8, 1.15);
+    secondaryFillLight.position.set(-22, -10, 18);
     scene.add(secondaryFillLight);
 
-    const rimLightBack = new THREE.DirectionalLight(0x5E9CA0, 1.3);
-    rimLightBack.position.set(0, 15, -25);
+    const rimLightBack = new THREE.DirectionalLight(0x5E9CA0, 1.35);
+    rimLightBack.position.set(0, 18, -28);
     scene.add(rimLightBack);
 
-    const vascularGlow = new THREE.PointLight(0x0D7377, 1.2, 50);
-    vascularGlow.position.set(0, 0, 2);
+    const vascularGlow = new THREE.PointLight(0x0D7377, 1.2, 55);
+    vascularGlow.position.set(0, 0, 3);
     scene.add(vascularGlow);
 
     // PROCEDURAL TEXTURE GENERATION FOR REALISTIC RENAL CAPSULE
@@ -330,12 +330,15 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
       return new THREE.Mesh(geom, material);
     };
 
-    // ROOT SYSTEM GROUPS
+    // ROOT SYSTEM GROUPS (Scaled gracefully to avoid feeling overly zoomed)
     const worldGroup = new THREE.Group();
     scene.add(worldGroup);
 
     const bilateralGroup = new THREE.Group();
     const singleGroup = new THREE.Group();
+    bilateralGroup.scale.set(0.82, 0.82, 0.82);
+    singleGroup.scale.set(0.9, 0.9, 0.9);
+
     worldGroup.add(bilateralGroup);
     worldGroup.add(singleGroup);
 
@@ -425,7 +428,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
     // BUILD SINGLE DETAILED KIDNEY VIEW (FOCUSED ANATOMY)
     // ----------------------------------------------------
     const singleKidneyMesh = createAnatomicalKidneyMesh(false);
-    singleKidneyMesh.scale.set(1.15, 1.15, 1.15);
+    singleKidneyMesh.scale.set(1.05, 1.05, 1.05);
     singleGroup.add(singleKidneyMesh);
 
     const singleAdrenal = createAdrenalGland(false);
@@ -458,26 +461,26 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
     singleGroup.visible = false;
     bilateralGroup.visible = true;
 
-    // AMBIENT FLOATING CELLULAR / GLOMERULAR PARTICLES
-    const particlesCount = 140;
+    // AMBIENT FLOATING GLOMERULAR PARTICLES
+    const particlesCount = 100;
     const particlesGeom = new THREE.BufferGeometry();
     const posArray = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 55;
+      posArray[i] = (Math.random() - 0.5) * 60;
     }
     particlesGeom.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
     const particlesMat = new THREE.PointsMaterial({
-      size: 0.22,
-      color: 0xE8714B,
+      size: 0.2,
+      color: 0x5E9CA0,
       transparent: true,
-      opacity: 0.45
+      opacity: 0.35
     });
     const particlesMesh = new THREE.Points(particlesGeom, particlesMat);
     scene.add(particlesMesh);
 
-    // CAMERA TRANSITION LOGIC
-    let targetCameraPos = new THREE.Vector3(0, 1, 34);
-    let targetLookAt = new THREE.Vector3(0, 0, 0);
+    // TARGET CAMERA POSITIONS (Proportional, comfortable distance)
+    let targetCameraPos = new THREE.Vector3(0, 0.5, 48);
+    let targetLookAt = new THREE.Vector3(0, -0.5, 0);
 
     // ATTACH SCENE CONTROL API FOR REACT STATE
     sceneControlRef.current = {
@@ -485,13 +488,13 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
         if (mode === 'pair') {
           bilateralGroup.visible = true;
           singleGroup.visible = false;
-          targetCameraPos.set(0, 1, 34);
-          targetLookAt.set(0, 0, 0);
+          targetCameraPos.set(0, 0.5, 48);
+          targetLookAt.set(0, -0.5, 0);
         } else {
           bilateralGroup.visible = false;
           singleGroup.visible = true;
-          targetCameraPos.set(2, 0, 24);
-          targetLookAt.set(1, 0, 0);
+          targetCameraPos.set(1.5, 0, 36);
+          targetLookAt.set(0.5, 0, 0);
         }
       },
       toggleAutoRotate: (enabled) => {
@@ -499,26 +502,26 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
       },
       setCameraPreset: (preset) => {
         if (preset === 'front') {
-          targetCameraPos.set(0, 1, 32);
-          targetLookAt.set(0, 0, 0);
+          targetCameraPos.set(0, 0.5, 46);
+          targetLookAt.set(0, -0.5, 0);
         } else if (preset === 'back') {
-          targetCameraPos.set(0, 1, -32);
-          targetLookAt.set(0, 0, 0);
+          targetCameraPos.set(0, 0.5, -46);
+          targetLookAt.set(0, -0.5, 0);
         } else if (preset === 'hilum') {
-          targetCameraPos.set(26, 3, 10);
-          targetLookAt.set(0, 0, 0);
+          targetCameraPos.set(36, 2, 16);
+          targetLookAt.set(0, -0.5, 0);
         }
       },
       zoom: (delta) => {
-        const factor = delta > 0 ? 0.85 : 1.15;
+        const factor = delta > 0 ? 0.88 : 1.14;
         camera.position.multiplyScalar(factor);
         camera.updateProjectionMatrix();
       },
       resetView: () => {
-        targetCameraPos.set(0, 1, 34);
-        targetLookAt.set(0, 0, 0);
-        camera.position.set(0, 1, 34);
-        controls.target.set(0, 0, 0);
+        targetCameraPos.set(0, 0.5, 48);
+        targetLookAt.set(0, -0.5, 0);
+        camera.position.set(0, 0.5, 48);
+        controls.target.set(0, -0.5, 0);
         controls.update();
       }
     };
@@ -533,19 +536,19 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
 
       // Organic physiological breathing pulse
       const time = Date.now() * 0.001;
-      const pulse = Math.sin(time * 1.3) * 0.035 + 1.0;
+      const pulse = Math.sin(time * 1.3) * 0.03 + 1.0;
 
       if (bilateralGroup.visible) {
         leftKidneyMesh.scale.set(pulse, pulse, pulse);
         rightKidneyMesh.scale.set(pulse, pulse, pulse);
       } else {
-        singleKidneyMesh.scale.set(1.15 * pulse, 1.15 * pulse, 1.15 * pulse);
+        singleKidneyMesh.scale.set(1.05 * pulse, 1.05 * pulse, 1.05 * pulse);
       }
 
       // Sync emissive warmth with the pulse
-      kidneyMaterial.emissiveIntensity = 0.2 + (Math.sin(time * 1.3) + 1.0) * 0.12;
+      kidneyMaterial.emissiveIntensity = 0.2 + (Math.sin(time * 1.3) + 1.0) * 0.1;
 
-      particlesMesh.rotation.y -= 0.0006;
+      particlesMesh.rotation.y -= 0.0005;
 
       controls.update();
       renderer.render(scene, camera);
@@ -603,51 +606,54 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
       <div
         ref={containerRef}
         className="w-full h-full cursor-grab active:cursor-grabbing"
-        title="Click and drag to rotate 360 degrees"
+        title="Click and drag to rotate 360 degrees in any direction"
       />
 
-      {/* TOP 360° BADGE OVERLAY */}
-      <div className="absolute top-4 right-4 sm:right-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy/80 backdrop-blur-md border border-white/20 text-white shadow-lg pointer-events-auto">
-        <Compass className={`w-4 h-4 text-coral ${isAutoRotating ? 'animate-spin' : ''}`} style={{ animationDuration: '6s' }} />
+      {/* TOP 360° SLEEK BADGE OVERLAY */}
+      <div className="absolute top-5 right-5 sm:right-8 z-20 flex items-center gap-2.5 px-4 py-2 rounded-full bg-navy/70 backdrop-blur-md border border-white/20 text-white shadow-lg pointer-events-auto">
+        <Compass
+          className={`w-4 h-4 text-coral ${isAutoRotating ? 'animate-spin' : ''}`}
+          style={{ animationDuration: '6s' }}
+        />
         <span className="text-xs font-bold uppercase tracking-wider text-white">
-          360° Interactive 3D View
+          360° Interactive View
         </span>
-        <span className="text-[10px] text-teal font-semibold hidden sm:inline">• Drag in any direction</span>
+        <span className="text-[10px] text-teal font-semibold hidden md:inline">• Drag to rotate</span>
       </div>
 
-      {/* FLOATING ANATOMICAL LABELS */}
+      {/* FLOATING ANATOMICAL LABELS (Collapsible toggle for pristine aesthetics) */}
       {showLabels && (
-        <div className="absolute top-16 left-4 sm:left-6 z-10 space-y-2 pointer-events-none hidden sm:block animate-fadeIn">
-          <div className="bg-navy/75 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl text-white text-xs shadow-md">
+        <div className="absolute top-18 right-5 sm:right-8 z-20 space-y-2 pointer-events-none hidden sm:block animate-fadeIn">
+          <div className="bg-navy/85 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-white text-xs shadow-lg max-w-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-[#8A2232] inline-block mr-2" />
-            <strong className="text-white">Renal Parenchyma &amp; Capsule</strong>
-            <span className="text-white/60 block text-[10px]">Active filtration &amp; metabolic regulation</span>
+            <strong className="text-white">Renal Cortex &amp; Capsule</strong>
+            <span className="text-white/60 block text-[10px]">Blood filtration &amp; vital hormones</span>
           </div>
 
-          <div className="bg-navy/75 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl text-white text-xs shadow-md">
+          <div className="bg-navy/85 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-white text-xs shadow-lg max-w-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-[#C81E2B] inline-block mr-2" />
             <strong className="text-white">Renal Artery &amp; Aorta</strong>
             <span className="text-white/60 block text-[10px]">Oxygenated blood supply</span>
           </div>
 
-          <div className="bg-navy/75 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl text-white text-xs shadow-md">
+          <div className="bg-navy/85 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-white text-xs shadow-lg max-w-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-[#1E5BB8] inline-block mr-2" />
             <strong className="text-white">Renal Vein &amp; Vena Cava</strong>
             <span className="text-white/60 block text-[10px]">Purified venous drainage</span>
           </div>
 
-          <div className="bg-navy/75 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl text-white text-xs shadow-md">
+          <div className="bg-navy/85 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-white text-xs shadow-lg max-w-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-[#E8DFC9] inline-block mr-2" />
             <strong className="text-white">Renal Pelvis &amp; Ureter</strong>
-            <span className="text-white/60 block text-[10px]">Transports urine to bladder</span>
+            <span className="text-white/60 block text-[10px]">Continuous urinary drainage</span>
           </div>
         </div>
       )}
 
-      {/* BOTTOM 360 HUD CONTROLS BAR */}
-      <div className="absolute bottom-4 inset-x-4 sm:inset-x-6 z-20 flex flex-wrap items-center justify-between gap-3 pointer-events-auto">
+      {/* BOTTOM COMPACT 360 CONTROLS BAR */}
+      <div className="absolute bottom-5 inset-x-5 sm:inset-x-8 z-20 flex flex-wrap items-center justify-between gap-3 pointer-events-auto">
         {/* Model Mode Switcher: Pair vs Single */}
-        <div className="flex items-center bg-navy/85 backdrop-blur-md border border-white/15 p-1 rounded-xl shadow-xl">
+        <div className="flex items-center bg-navy/80 backdrop-blur-md border border-white/20 p-1 rounded-xl shadow-lg">
           <button
             onClick={() => handleModeChange('pair')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
@@ -656,7 +662,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
                 : 'text-white/70 hover:text-white'
             }`}
           >
-            Pair (Bilateral)
+            Bilateral Pair
           </button>
           <button
             onClick={() => handleModeChange('single')}
@@ -671,28 +677,28 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
         </div>
 
         {/* Preset Angle Buttons */}
-        <div className="hidden md:flex items-center gap-1.5 bg-navy/85 backdrop-blur-md border border-white/15 p-1 rounded-xl shadow-xl text-xs text-white">
+        <div className="hidden lg:flex items-center gap-1.5 bg-navy/80 backdrop-blur-md border border-white/20 p-1 rounded-xl shadow-lg text-xs text-white">
           <span className="text-[10px] text-white/50 uppercase px-2 font-bold">Angle:</span>
           <button
             onClick={() => handlePresetChange('front')}
             className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
-              activePreset === 'front' ? 'bg-white/20 text-white' : 'text-white/70 hover:text-white'
+              activePreset === 'front' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white'
             }`}
           >
-            Anterior (Front)
+            Front
           </button>
           <button
             onClick={() => handlePresetChange('back')}
             className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
-              activePreset === 'back' ? 'bg-white/20 text-white' : 'text-white/70 hover:text-white'
+              activePreset === 'back' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white'
             }`}
           >
-            Posterior (Back)
+            Back
           </button>
           <button
             onClick={() => handlePresetChange('hilum')}
             className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
-              activePreset === 'hilum' ? 'bg-white/20 text-white' : 'text-white/70 hover:text-white'
+              activePreset === 'hilum' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white'
             }`}
           >
             Medial Hilum
@@ -700,15 +706,15 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
         </div>
 
         {/* Action Controls: Auto-rotate, Zoom, Labels */}
-        <div className="flex items-center gap-2 bg-navy/85 backdrop-blur-md border border-white/15 p-1 rounded-xl shadow-xl">
+        <div className="flex items-center gap-1.5 bg-navy/80 backdrop-blur-md border border-white/20 p-1 rounded-xl shadow-lg">
           {/* Auto Rotate Toggle */}
           <button
             onClick={handleToggleAutoRotate}
             title={isAutoRotating ? 'Pause 360° Rotation' : 'Start 360° Rotation'}
-            className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1 text-xs px-2"
+            className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1.5 text-xs px-2.5"
           >
             {isAutoRotating ? <Pause className="w-3.5 h-3.5 text-coral" /> : <Play className="w-3.5 h-3.5 text-teal" />}
-            <span className="hidden sm:inline font-semibold">{isAutoRotating ? '360° Rotating' : 'Rotate'}</span>
+            <span className="hidden sm:inline font-semibold">{isAutoRotating ? '360° Auto' : 'Rotate'}</span>
           </button>
 
           {/* Toggle Labels */}
@@ -716,7 +722,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
             onClick={() => setShowLabels(!showLabels)}
             title="Toggle Anatomy Callouts"
             className={`p-1.5 rounded-lg transition-colors cursor-pointer hidden sm:block ${
-              showLabels ? 'text-teal bg-white/10' : 'text-white/60 hover:text-white'
+              showLabels ? 'text-teal bg-white/15' : 'text-white/60 hover:text-white'
             }`}
           >
             <Eye className="w-4 h-4" />

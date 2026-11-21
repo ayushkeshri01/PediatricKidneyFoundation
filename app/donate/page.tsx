@@ -56,7 +56,7 @@ export default function DonatePage() {
         <div className="my-8 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-coral/10 border border-coral/30 rounded-full mb-4">
             <span className="text-xs font-bold uppercase tracking-widest text-coral">
-              80G Tax Exempt Foundation
+              Pediatric Care &amp; Treatment Aid
             </span>
           </div>
           <h1 className="text-4xl text-navy font-bold mb-4">
@@ -130,7 +130,7 @@ export default function DonatePage() {
               {/* Step 2: Donor Details */}
               <div className="border-t border-gray-100 pt-8">
                 <label className="block text-sm font-bold uppercase tracking-wider text-navy mb-4">
-                  2. Donor Information (For 80G Tax Exemption Receipt)
+                  2. Donor Information
                 </label>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -180,11 +180,10 @@ export default function DonatePage() {
 
                   <div>
                     <label className="block text-xs font-semibold text-gray-700 mb-1">
-                      PAN Number (Required for 80G Certificate) *
+                      PAN / Identification Number (Optional)
                     </label>
                     <input
                       type="text"
-                      required
                       maxLength={10}
                       placeholder="ABCDE1234F"
                       value={formData.panNumber}
@@ -235,29 +234,29 @@ export default function DonatePage() {
             </form>
           </div>
 
-          {/* Sidebar: 80G Exemption Info & Bank Details */}
+          {/* Sidebar: Mission Impact & Bank Details */}
           <div className="lg:col-span-4 space-y-8">
-            {/* 80G Card */}
+            {/* Impact Trust Card */}
             <div className="bg-navy text-white p-8 rounded-3xl shadow-xl">
               <span className="text-xs font-bold uppercase tracking-widest text-teal">
-                Tax Benefit
+                Direct Patient Aid
               </span>
-              <h3 className="text-2xl font-bold mt-2 mb-4 text-white">80G Tax Exemption</h3>
+              <h3 className="text-2xl font-bold mt-2 mb-4 text-white">100% Care Mission</h3>
               <p className="text-sm text-white/80 leading-relaxed font-light mb-6">
-                All donations made to the Pediatric Kidney Foundation (PKF) are eligible for 50% tax deduction under Section 80G of the Indian Income Tax Act. A formal 80G tax receipt will be issued to your email.
+                Every rupee contributed to the Pediatric Kidney Foundation directly supports pediatric dialysis consumables, immunosuppressants, corrective urological surgeries, and free community screenings.
               </p>
               <div className="space-y-3 border-t border-white/10 pt-4 text-xs text-white/90">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-coral shrink-0" />
-                  <span>Registered Non-Profit Trust since 2004</span>
+                  <span>Registered Non-Profit Foundation since 2004</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-coral shrink-0" />
-                  <span>Immediate Digital Tax Certificate</span>
+                  <span>Immediate Digital Donation Receipt</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-coral shrink-0" />
-                  <span>100% Directed to Pediatric Care</span>
+                  <span>Direct Subsidies for Underprivileged Children</span>
                 </div>
               </div>
             </div>
@@ -278,7 +277,7 @@ export default function DonatePage() {
                 <p><strong>A/C No:</strong> 34567890123</p>
               </div>
               <p className="text-[11px] text-gray-400 mt-3">
-                Please email transfer receipt and PAN details to contact@pkf-india.org for 80G receipt generation.
+                Please email transfer receipt to contact@pkf-india.org for formal acknowledgment and receipt.
               </p>
             </div>
           </div>

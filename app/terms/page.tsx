@@ -23,7 +23,7 @@ export default function TermsPage() {
             </p>
             <h2 className="text-xl font-bold text-navy mt-6 mb-2">2. Charitable Contributions</h2>
             <p>
-              Donations made to the Pediatric Kidney Foundation are non-refundable and are utilized directly to fund pediatric dialysis, surgeries, diagnostics, and patient education in accordance with Indian trust laws and 80G tax exemption guidelines.
+              Donations made to the Pediatric Kidney Foundation are non-refundable and are utilized directly to fund pediatric dialysis, surgeries, diagnostics, and patient education in accordance with Indian trust laws and charitable trust guidelines.
             </p>
             <h2 className="text-xl font-bold text-navy mt-6 mb-2">3. Governing Law</h2>
             <p>

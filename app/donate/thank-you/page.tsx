@@ -29,14 +29,14 @@ function ThankYouContent() {
         Your contribution of <strong className="text-navy font-bold">₹{Number(amount).toLocaleString('en-IN')}</strong> will directly help children battling kidney diseases receive life-saving dialysis, essential medicines, and diagnostic care.
       </p>
 
-      {/* Tax Exemption receipt acknowledgement card */}
+      {/* Donation Receipt Acknowledgement card */}
       <div className="bg-off-white p-6 rounded-2xl border border-gray-200 text-left mb-8 space-y-3">
         <div className="flex items-center gap-2 text-navy font-bold text-sm">
           <Heart className="w-4 h-4 text-coral" />
-          <span>80G Tax Exemption Receipt Details</span>
+          <span>Donation Receipt &amp; Contribution Record</span>
         </div>
         <p className="text-xs text-gray-600 leading-relaxed">
-          An official 80G Tax Exemption Certificate has been queued for dispatch to your registered email address. Please retain it for filing your Indian Income Tax return.
+          An official charitable donation acknowledgment receipt has been queued for dispatch to your registered email address.
         </p>
         <p className="text-xs text-gray-500 font-mono">
           Receipt Reference: PKF-{Math.floor(100000 + Math.random() * 900000)}-2024

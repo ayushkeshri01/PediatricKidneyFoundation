@@ -5,7 +5,7 @@ export const foundationData = {
   shortName: 'PKF',
   establishedDate: '5 April 2004',
   yearsActive: '19+',
-  taxExemptionStatus: '80G TAX EXEMPT STATUS',
+  taxExemptionStatus: 'Registered Charitable Indian Trust',
   tagline: 'Saving Young Kidneys, Securing Young Lives',
   subtitle: 'Supporting children with kidney diseases through awareness, early care, education, research, and compassionate support.',
   contact: {

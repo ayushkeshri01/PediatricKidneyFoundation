@@ -9,7 +9,7 @@ export default function DonationCTASection() {
           {/* Top Right Badge */}
           <div className="absolute top-6 right-8 sm:right-12 bg-coral/20 border border-coral/30 px-4 py-2 rounded-full backdrop-blur-md">
             <p className="text-xs font-bold text-coral tracking-widest uppercase">
-              80G Tax Exempt Foundation
+              Compassionate Pediatric Care
             </p>
           </div>
 

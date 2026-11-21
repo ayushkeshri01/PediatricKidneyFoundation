@@ -169,17 +169,14 @@ export default function Header() {
                 <Search className="w-5 h-5" />
               </button>
 
-              <div className="flex flex-col items-end">
+              <div className="flex items-center">
                 <Link
                   href="/donate"
                   id="header-donate-btn"
-                  className="bg-coral text-white px-5 sm:px-6 py-2.5 rounded text-xs sm:text-sm font-bold shadow-md hover:brightness-110 active:scale-95 transition-all text-center"
+                  className="bg-coral text-white px-5 sm:px-6 py-2.5 rounded-lg text-xs sm:text-sm font-bold shadow-md hover:brightness-110 active:scale-95 transition-all text-center"
                 >
                   Donate Now
                 </Link>
-                <span className="text-[9px] font-bold text-teal mt-1 tracking-tighter">
-                  80G TAX EXEMPT STATUS
-                </span>
               </div>
 
               {/* Mobile Hamburger Button */}
@@ -305,7 +302,7 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="bg-coral text-white py-3 rounded-lg text-center font-bold text-sm shadow-md"
                 >
-                  Donate to PKF (80G Tax Exempt)
+                  Donate to Support PKF
                 </Link>
               </div>
             </nav>

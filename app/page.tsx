@@ -36,7 +36,7 @@ export default function HomePage() {
       {/* 8. Institutional Partners */}
       <PartnersSection />
 
-      {/* 9. Donation Call-To-Action (80G Tax Exempt) */}
+      {/* 9. Donation Call-To-Action */}
       <DonationCTASection />
     </>
   );

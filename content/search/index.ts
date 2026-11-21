@@ -109,7 +109,7 @@ export function getSiteSearchIndex(): SearchResultItem[] {
     },
     {
       title: 'Donate & Support Our Mission',
-      description: 'Provide life-saving dialysis, corrective surgeries, and pediatric renal care with 80G tax exemption.',
+      description: 'Provide life-saving dialysis, corrective surgeries, and pediatric renal care for children in need.',
       href: '/donate',
       category: 'Donation'
     },

@@ -160,10 +160,12 @@
   will-change: transform;
 }
 
-#renal-canvas-container {
-  /* Subtle vignette gradient on the left edge only to seamlessly blend into navy background */
-  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
+@media (min-width: 1024px) {
+  #renal-canvas-container {
+    /* Subtle vignette gradient on the left edge only to seamlessly blend into navy background */
+    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 100%);
+  }
 }
 
 @keyframes bounceSubtle {

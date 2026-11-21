@@ -107,7 +107,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/donate" id="footer-transparency-link" className="text-gray-400 hover:text-white transition-colors text-sm link-underline">
-                  80G Tax Exemption & Donate
+                  Donate & Support Care
                 </Link>
               </li>
             </ul>
@@ -172,7 +172,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-500 text-xs">
-            © 2024 Pediatric Kidney Foundation. All rights reserved. Registered Indian Trust (80G Status).
+            © 2024 Pediatric Kidney Foundation. All rights reserved. Registered Charitable Indian Trust.
           </p>
           <div className="flex gap-8 text-xs text-gray-500">
             <Link href="/privacy" id="privacy-link" className="hover:text-white transition-colors">

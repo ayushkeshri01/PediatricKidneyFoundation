@@ -19,7 +19,7 @@ export default function PrivacyPage() {
             </p>
             <h2 className="text-xl font-bold text-navy mt-6 mb-2">1. Information We Collect</h2>
             <p>
-              We collect information provided voluntarily through our contact forms, newsletter subscription, and donation portals. For donors seeking an 80G tax receipt under the Indian Income Tax Act, we collect name, email, phone number, address, and Permanent Account Number (PAN) as mandated by the Government of India.
+              We collect information provided voluntarily through our contact forms, newsletter subscription, and donation portals. For donors, we collect name, email, phone number, and address to generate official charitable contribution receipts.
             </p>
             <h2 className="text-xl font-bold text-navy mt-6 mb-2">2. How We Use Information</h2>
             <p>
