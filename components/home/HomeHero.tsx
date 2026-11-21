@@ -5,11 +5,11 @@ import RealisticKidneyCanvas from '@/components/three/RealisticKidneyCanvas';
 
 export default function HomeHero() {
   return (
-    <section className="relative bg-navy overflow-hidden h-[720px] flex items-center">
-      {/* Three.js 3D Realistic Kidney Canvas Container */}
+    <section className="relative bg-navy overflow-hidden min-h-[760px] lg:h-[760px] flex items-center">
+      {/* Three.js 3D Realistic 360 Kidney Canvas Container */}
       <div
         id="renal-canvas-container"
-        className="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 opacity-85 pointer-events-auto"
+        className="absolute right-0 top-0 w-full lg:w-[60%] h-full z-10 pointer-events-auto"
       >
         <RealisticKidneyCanvas className="w-full h-full" />
       </div>

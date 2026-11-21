@@ -161,8 +161,9 @@
 }
 
 #renal-canvas-container {
-  mask-image: radial-gradient(circle, black 40%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+  /* Subtle vignette gradient on the left edge only to seamlessly blend into navy background */
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
 }
 
 @keyframes bounceSubtle {
