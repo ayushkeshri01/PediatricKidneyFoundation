@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --navy: #1E3A5F;
+    --teal: #0D7377;
+    --turquoise: #5E9CA0;
+    --sage: #B8D4BD;
+    --warm-white: #FAFAF8;
+    --off-white: #F5F3F0;
+    --charcoal: #2C2C2C;
+    --coral: #E8714B;
+  }
+
+  body {
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--charcoal);
+    background-color: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-manrope), sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Color Utility Classes */
+.bg-navy { background-color: var(--navy); }
+.text-navy { color: var(--navy); }
+.border-navy { border-color: var(--navy); }
+
+.bg-teal { background-color: var(--teal); }
+.text-teal { color: var(--teal); }
+.border-teal { border-color: var(--teal); }
+
+.bg-turquoise { background-color: var(--turquoise); }
+.text-turquoise { color: var(--turquoise); }
+.border-turquoise { border-color: var(--turquoise); }
+
+.bg-sage { background-color: var(--sage); }
+.text-sage { color: var(--sage); }
+.border-sage { border-color: var(--sage); }
+
+.bg-coral { background-color: var(--coral); }
+.text-coral { color: var(--coral); }
+.border-coral { border-color: var(--coral); }
+
+.bg-warm-white { background-color: var(--warm-white); }
+.bg-off-white { background-color: var(--off-white); }
+
+/* Animation System */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-left.active, .reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-hero-title {
+  animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-hero-text {
+  animation: fadeIn 1s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-hero-cta {
+  animation: fadeIn 0.8s ease-out 0.8s forwards;
+  opacity: 0;
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
+
+.stagger-item.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hover Effects */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--teal);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.social-icon {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.social-icon:hover {
+  transform: scale(1.15);
+  background-color: var(--teal) !important;
+  color: white !important;
+}
+
+.nav-link {
+  transition: color 0.3s ease;
+}
+
+.parallax-image-container {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.parallax-image {
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+#renal-canvas-container {
+  mask-image: radial-gradient(circle, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+}
+
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, .reveal, .stagger-item, .animate-hero-title, .animate-hero-text, .animate-hero-cta {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #renal-canvas-container {
+    display: none;
+  }
+}
