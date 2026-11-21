@@ -121,6 +121,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/faq" id="footer-faq-link" className="text-gray-400 hover:text-white transition-colors text-sm link-underline">
+                  Frequently Asked Questions (FAQs)
+                </Link>
+              </li>
+              <li>
                 <Link href="/annual-reports" id="footer-annual-reports-link" className="text-gray-400 hover:text-white transition-colors text-sm link-underline">
                   Annual Reports
                 </Link>

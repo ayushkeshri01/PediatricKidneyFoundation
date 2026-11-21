@@ -107,6 +107,12 @@ export default function Header() {
                     >
                       Nutrition & Lifestyle Tips
                     </Link>
+                    <Link
+                      href="/faq"
+                      className="block px-3 py-2 rounded-lg text-xs font-bold text-teal hover:bg-teal/10 transition-colors border-t border-gray-50 mt-1 pt-2"
+                    >
+                      Frequently Asked Questions (FAQs)
+                    </Link>
                   </div>
                 )}
               </div>
@@ -251,6 +257,13 @@ export default function Header() {
                   className="block text-xs text-gray-600 hover:text-navy py-1"
                 >
                   Nutrition & Lifestyle
+                </Link>
+                <Link
+                  href="/faq"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-xs font-bold text-teal hover:text-navy py-1"
+                >
+                  Frequently Asked Questions (FAQs)
                 </Link>
               </div>
               <Link
