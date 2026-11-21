@@ -31,6 +31,8 @@ const diseaseImages: Record<string, string> = {
   'kidney-stones': 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1000'
 };
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return diseasesData.map((d) => ({
     slug: d.slug
