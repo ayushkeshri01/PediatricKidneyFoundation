@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import Image from 'next/image';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare, Hospital } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 
 export default function ContactPage() {
@@ -25,17 +26,39 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ label: 'Contact Us' }]} />
 
-        {/* Header */}
-        <div className="my-8 max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-teal">
-            Get in Touch
-          </span>
-          <h1 className="text-4xl text-navy font-bold mt-2 mb-4">
-            Contact Pediatric Kidney Foundation
-          </h1>
-          <p className="text-gray-600 leading-relaxed text-base">
-            Whether you are a parent seeking guidance for your child, a healthcare professional wishing to collaborate, or an organization exploring CSR partnerships, we are here to support you.
-          </p>
+        {/* Header with Visual Clinical Secretariat Banner */}
+        <div className="my-8 bg-white rounded-3xl p-8 sm:p-12 border border-gray-100 shadow-sm overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <span className="text-xs font-bold uppercase tracking-widest text-teal bg-teal/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
+                Clinical Guidance &amp; Secretariat Desk
+              </span>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl text-navy font-bold mb-4">
+                Contact Pediatric Kidney Foundation
+              </h1>
+              <p className="text-gray-600 leading-relaxed text-base sm:text-lg font-light">
+                Whether you are a parent seeking diagnostic guidance for your child, a healthcare professional wishing to collaborate, or an institution exploring CSR partnerships, our team is here to assist you.
+              </p>
+            </div>
+            <div className="lg:col-span-4 relative">
+              <div className="relative h-56 sm:h-64 w-full rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <Image
+                  src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800"
+                  alt="PKF Clinical Coordination Secretariat New Delhi"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 35vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white text-xs">
+                  <p className="font-bold flex items-center gap-1.5">
+                    <Hospital className="w-3.5 h-3.5 text-teal" /> PKF Central Secretariat
+                  </p>
+                  <p className="text-white/80 text-[11px]">South Extension-1, New Delhi</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 my-10">
@@ -100,12 +123,12 @@ export default function ContactPage() {
             {/* Map Representation */}
             <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
               <h3 className="font-bold text-navy text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-teal" /> Location Map
+                <MapPin className="w-4 h-4 text-teal" /> Location Hub
               </h3>
               <div className="h-56 bg-off-white rounded-2xl flex flex-col items-center justify-center p-6 text-center border border-gray-200">
                 <MapPin className="w-8 h-8 text-coral mb-2 animate-bounce-subtle" />
                 <p className="font-bold text-navy text-sm">E-11, South Extension-1, New Delhi</p>
-                <p className="text-xs text-gray-500 mt-1">Near AIIMS & Safdarjung Hospital Hub</p>
+                <p className="text-xs text-gray-500 mt-1">Near AIIMS &amp; Safdarjung Hospital Hub</p>
                 <a
                   href="https://maps.google.com/?q=South+Extension-1+New+Delhi"
                   target="_blank"
@@ -157,7 +180,7 @@ export default function ContactPage() {
                   >
                     <option value="help">Get Help for a Child / Medical Guidance</option>
                     <option value="volunteer">Volunteer Opportunities</option>
-                    <option value="csr">CSR & Institutional Partnership</option>
+                    <option value="csr">CSR &amp; Institutional Partnership</option>
                     <option value="host-camp">Host a Pediatric Screening Camp</option>
                     <option value="doctor">Medical Professional Collaboration</option>
                     <option value="general">General Foundation Inquiry</option>

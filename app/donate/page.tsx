@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Heart, ShieldCheck, CheckCircle2, ArrowRight, Lock, Award } from 'lucide-react';
+import Image from 'next/image';
+import { Heart, ShieldCheck, CheckCircle2, ArrowRight, Lock, Award, Users } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 
 export default function DonatePage() {
@@ -52,19 +53,41 @@ export default function DonatePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ label: 'Donate' }]} />
 
-        {/* Header */}
-        <div className="my-8 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-coral/10 border border-coral/30 rounded-full mb-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-coral">
-              Pediatric Care &amp; Treatment Aid
-            </span>
+        {/* Header with Visual Donor Impact Banner */}
+        <div className="my-8 bg-white rounded-3xl p-8 sm:p-12 border border-gray-100 shadow-sm overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-coral/10 border border-coral/30 rounded-full mb-4">
+                <span className="text-xs font-bold uppercase tracking-widest text-coral">
+                  Pediatric Care &amp; Treatment Aid
+                </span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl text-navy font-bold mb-4">
+                Support Our Mission: Save Young Kidneys
+              </h1>
+              <p className="text-gray-600 leading-relaxed text-base sm:text-lg font-light">
+                Your contribution directly funds life-saving pediatric dialysis, diagnostic screening camps, essential medicines, and corrective surgeries for children from underprivileged families across India.
+              </p>
+            </div>
+            <div className="lg:col-span-4 relative">
+              <div className="relative h-56 sm:h-64 w-full rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <Image
+                  src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800"
+                  alt="A smiling child supported by compassionate community healthcare"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 35vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white text-xs">
+                  <p className="font-bold flex items-center gap-1">
+                    <Heart className="w-3.5 h-3.5 text-coral fill-coral" /> Restoring Smiles &amp; Health
+                  </p>
+                  <p className="text-white/80 text-[11px]">100% of public gifts support patient care</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl text-navy font-bold mb-4">
-            Support Our Mission: Save Young Kidneys
-          </h1>
-          <p className="text-gray-600 leading-relaxed text-base">
-            Your generous contribution directly funds life-saving pediatric dialysis, diagnostic screening camps, medicines, and corrective urological surgeries for children from underprivileged families.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 my-10">

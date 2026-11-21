@@ -1,6 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Activity,
   AlertTriangle,
@@ -19,6 +20,16 @@ import { diseasesData } from '@/content/diseases';
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
+
+const diseaseImages: Record<string, string> = {
+  'urinary-tract-infection': 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=1000',
+  'nephrotic-syndrome': 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000',
+  'chronic-kidney-disease': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1000',
+  'congenital-kidney-disorders': 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000',
+  'acute-kidney-injury': 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=1000',
+  'glomerulonephritis': 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1000',
+  'kidney-stones': 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=1000'
+};
 
 export async function generateStaticParams() {
   return diseasesData.map((d) => ({
@@ -45,6 +56,8 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const imageUrl = diseaseImages[disease.slug] || 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000';
+
   // Related other diseases
   const otherDiseases = diseasesData
     .filter((d) => d.id !== disease.id)
@@ -61,30 +74,51 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
           ]}
         />
 
-        {/* Hero Header */}
-        <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-gray-100 my-8">
-          <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-widest text-teal bg-teal/10 px-3 py-1 rounded-full">
-              Pediatric Condition Guide
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 mb-4">
-              {disease.name}
-            </h1>
-            <p className="text-lg text-gray-600 font-light leading-relaxed mb-6">
-              {disease.shortDescription}
-            </p>
+        {/* Hero Header with Medical Image Banner */}
+        <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-gray-100 my-8 overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <span className="text-xs font-bold uppercase tracking-widest text-teal bg-teal/10 px-3 py-1 rounded-full">
+                Pediatric Condition Guide
+              </span>
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 mb-4">
+                {disease.name}
+              </h1>
+              <p className="text-lg text-gray-600 font-light leading-relaxed mb-6">
+                {disease.shortDescription}
+              </p>
 
-            {disease.isCurable && (
-              <div className="flex items-start gap-3 p-4 bg-teal/5 border border-teal/20 rounded-xl">
-                <CheckCircle2 className="w-5 h-5 text-teal shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-teal">
-                    Prognosis & Management
+              {disease.isCurable && (
+                <div className="flex items-start gap-3 p-4 bg-teal/5 border border-teal/20 rounded-xl">
+                  <CheckCircle2 className="w-5 h-5 text-teal shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-teal">
+                      Prognosis &amp; Management
+                    </p>
+                    <p className="text-sm text-navy mt-0.5 font-medium">{disease.isCurable}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="lg:col-span-4 relative">
+              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <Image
+                  src={imageUrl}
+                  alt={disease.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 35vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white text-xs">
+                  <p className="font-bold flex items-center gap-1.5">
+                    <Stethoscope className="w-3.5 h-3.5 text-teal" /> PKF Clinical Protocols
                   </p>
-                  <p className="text-sm text-navy mt-0.5 font-medium">{disease.isCurable}</p>
+                  <p className="text-white/80 text-[11px]">Validated pediatric nephrology guidelines</p>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
 
@@ -163,7 +197,7 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
                 <div className="w-10 h-10 rounded-lg bg-teal/10 text-teal flex items-center justify-center">
                   <Pill className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-navy">Treatment & Care Paths</h2>
+                <h2 className="text-2xl font-bold text-navy">Treatment &amp; Care Paths</h2>
               </div>
               <ul className="space-y-3">
                 {disease.treatment.map((t, idx) => (
@@ -230,7 +264,7 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
               </p>
               <Link
                 href="/contact?inquiry=help"
-                className="w-full bg-coral text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:brightness-110 shadow-md transition-all"
+                className="w-full bg-coral text-white py-3.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:brightness-110 shadow-md transition-all"
               >
                 <PhoneCall className="w-4 h-4" /> Connect with PKF Care Desk
               </Link>

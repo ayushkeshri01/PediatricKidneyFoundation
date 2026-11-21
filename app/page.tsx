@@ -12,7 +12,7 @@ import DonationCTASection from '@/components/home/DonationCTASection';
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero Section with Three.js 3D Realistic Kidney Visualization */}
+      {/* 1. Hero Section with Dedicated Pediatric Healthcare Visuals */}
       <HomeHero />
 
       {/* 2. Quick Access Overlap Cards */}
