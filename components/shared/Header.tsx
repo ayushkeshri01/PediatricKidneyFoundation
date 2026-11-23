@@ -1,9 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { HeartPulse, Search, ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
+import {
+  HeartPulse,
+  Search,
+  ChevronDown,
+  Menu,
+  X,
+  Phone,
+  ArrowRight,
+  Heart,
+  BookOpen,
+  HelpCircle,
+  Clock,
+  MapPin
+} from 'lucide-react';
 import SearchModal from './SearchModal';
 
 export default function Header() {
@@ -11,29 +24,63 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isKidneyDropdownOpen, setIsKidneyDropdownOpen] = useState(false);
+  const [isMobileKidneyOpen, setIsMobileKidneyOpen] = useState(false);
+  const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+
+  // Close mobile drawer when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsMobileKidneyOpen(false);
+    setIsMobileAboutOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        setIsSearchOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+      <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-xs">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16 sm:h-20">
+            
             {/* Logo Area */}
-            <Link href="/" className="flex-shrink-0 flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-navy rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
-                <HeartPulse className="text-white w-6 h-6" />
+            <Link href="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-navy rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
+                <HeartPulse className="text-white w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div>
-                <span className="block text-navy font-extrabold text-xl leading-none uppercase tracking-tighter">
+                <span className="block text-navy font-extrabold text-lg sm:text-xl leading-none uppercase tracking-tighter">
                   PKF
                 </span>
-                <span className="block text-[10px] text-teal font-semibold uppercase tracking-widest">
+                <span className="block text-[8px] sm:text-[10px] text-teal font-semibold uppercase tracking-wider sm:tracking-widest">
                   Pediatric Kidney Foundation
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex space-x-8 items-center">
+            <nav className="hidden lg:flex space-x-7 items-center">
               <Link
                 href="/"
                 id="nav-home-link"
@@ -81,7 +128,7 @@ export default function Header() {
                       href="/kidney-health/symptoms"
                       className="block px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-teal/10 hover:text-teal transition-colors"
                     >
-                      Common Symptoms & Warning Signs
+                      Common Symptoms &amp; Warning Signs
                     </Link>
                     <Link
                       href="/kidney-health/diseases"
@@ -93,19 +140,19 @@ export default function Header() {
                       href="/kidney-health/diagnosis"
                       className="block px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-teal/10 hover:text-teal transition-colors"
                     >
-                      Diagnosis & Investigations
+                      Diagnosis &amp; Investigations
                     </Link>
                     <Link
                       href="/treatment"
                       className="block px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-teal/10 hover:text-teal transition-colors"
                     >
-                      Treatment Journey (Dialysis & Transplant)
+                      Treatment Journey (Dialysis &amp; Transplant)
                     </Link>
                     <Link
                       href="/kidney-health/nutrition"
                       className="block px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-teal/10 hover:text-teal transition-colors"
                     >
-                      Nutrition & Lifestyle Tips
+                      Nutrition &amp; Lifestyle Tips
                     </Link>
                     <Link
                       href="/faq"
@@ -162,168 +209,334 @@ export default function Header() {
               >
                 News
               </Link>
+              <Link
+                href="/contact"
+                id="nav-contact-link"
+                className={`text-sm font-semibold nav-link link-underline ${
+                  pathname === '/contact' ? 'text-teal font-bold' : 'text-gray-600 hover:text-navy'
+                }`}
+              >
+                Contact
+              </Link>
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center gap-3 sm:gap-4">
+            {/* Actions: Search, Donate & Hamburger Button */}
+            <div className="flex items-center gap-1.5 sm:gap-3">
+              {/* Search Button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 text-gray-500 hover:text-navy transition-colors rounded-lg hover:bg-gray-100"
+                className="p-2 sm:p-2.5 text-gray-500 hover:text-navy transition-colors rounded-xl hover:bg-gray-100 cursor-pointer"
                 aria-label="Search website"
                 title="Search website"
               >
                 <Search className="w-5 h-5" />
               </button>
 
-              <div className="flex items-center">
-                <Link
-                  href="/donate"
-                  id="header-donate-btn"
-                  className="bg-coral text-white px-5 sm:px-6 py-2.5 rounded-lg text-xs sm:text-sm font-bold shadow-md hover:brightness-110 active:scale-95 transition-all text-center"
-                >
-                  Donate Now
-                </Link>
-              </div>
+              {/* Donate Button (Responsive sizes) */}
+              <Link
+                href="/donate"
+                id="header-donate-btn"
+                className="bg-coral text-white px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-sm hover:shadow-md hover:brightness-110 active:scale-95 transition-all text-center inline-flex items-center gap-1.5 shrink-0"
+              >
+                <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white" />
+                <span>Donate</span>
+              </Link>
 
-              {/* Mobile Hamburger Button */}
+              {/* Mobile Hamburger Toggle Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 text-navy hover:text-teal rounded-lg hover:bg-gray-100 ml-1"
-                aria-label="Toggle Navigation Menu"
+                className="lg:hidden p-2 sm:p-2.5 text-navy hover:text-teal rounded-xl hover:bg-gray-100 transition-colors cursor-pointer"
+                aria-label="Toggle navigation menu"
+                aria-expanded={isMobileMenuOpen}
               >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6 text-navy" />
+                ) : (
+                  <Menu className="w-6 h-6 text-navy" />
+                )}
               </button>
             </div>
           </div>
         </div>
-
-        {/* Mobile Navigation Drawer */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-6 shadow-lg animate-fadeIn">
-            <nav className="flex flex-col space-y-3">
-              <Link
-                href="/"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-bold text-navy hover:bg-teal/5 rounded-lg"
-              >
-                Home
-              </Link>
-              <Link
-                href="/kidney-health"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-bold text-teal hover:bg-teal/5 rounded-lg"
-              >
-                Kidney Health Hub
-              </Link>
-              <div className="pl-6 space-y-2 border-l-2 border-teal/20 ml-3">
-                <Link
-                  href="/kidney-health/healthy-kidneys"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs text-gray-600 hover:text-navy py-1"
-                >
-                  Healthy Kidneys Guide
-                </Link>
-                <Link
-                  href="/kidney-health/symptoms"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs text-gray-600 hover:text-navy py-1"
-                >
-                  Common Symptoms
-                </Link>
-                <Link
-                  href="/kidney-health/diseases"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs text-gray-600 hover:text-navy py-1"
-                >
-                  Diseases Library
-                </Link>
-                <Link
-                  href="/kidney-health/diagnosis"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs text-gray-600 hover:text-navy py-1"
-                >
-                  Diagnosis & Investigations
-                </Link>
-                <Link
-                  href="/treatment"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs text-gray-600 hover:text-navy py-1"
-                >
-                  Treatment Journey
-                </Link>
-                <Link
-                  href="/kidney-health/nutrition"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs text-gray-600 hover:text-navy py-1"
-                >
-                  Nutrition & Lifestyle
-                </Link>
-                <Link
-                  href="/faq"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs font-bold text-teal hover:text-navy py-1"
-                >
-                  Frequently Asked Questions (FAQs)
-                </Link>
-              </div>
-              <Link
-                href="/support"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-teal/5 rounded-lg"
-              >
-                Support
-              </Link>
-              <Link
-                href="/programs"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-teal/5 rounded-lg"
-              >
-                Programs
-              </Link>
-              <Link
-                href="/about"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-teal/5 rounded-lg"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/get-involved"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-teal/5 rounded-lg"
-              >
-                Get Involved
-              </Link>
-              <Link
-                href="/news"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-teal/5 rounded-lg"
-              >
-                News & Media
-              </Link>
-              <Link
-                href="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-teal/5 rounded-lg"
-              >
-                Contact PKF
-              </Link>
-
-              <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
-                <Link
-                  href="/donate"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="bg-coral text-white py-3 rounded-lg text-center font-bold text-sm shadow-md"
-                >
-                  Donate to Support PKF
-                </Link>
-              </div>
-            </nav>
-          </div>
-        )}
       </header>
 
-      {/* Search Modal */}
+      {/* =========================================================================
+          FULL-FEATURED MOBILE NAVIGATION DRAWER & BACKDROP
+         ========================================================================= */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden animate-fadeIn">
+          {/* Backdrop Overlay */}
+          <div
+            className="fixed inset-0 bg-navy/60 backdrop-blur-xs transition-opacity"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Slide-in Drawer Container */}
+          <div className="fixed inset-y-0 right-0 w-[88vw] max-w-[360px] bg-white shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-gray-100 animate-slideInRight">
+            
+            {/* Drawer Top Header */}
+            <div>
+              <div className="p-4 sm:p-5 border-b border-gray-100 flex items-center justify-between bg-warm-white">
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2.5"
+                >
+                  <div className="w-8 h-8 bg-navy rounded-lg flex items-center justify-center">
+                    <HeartPulse className="text-white w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="block text-navy font-extrabold text-base leading-none uppercase tracking-tighter">
+                      PKF India
+                    </span>
+                    <span className="block text-[8px] text-teal font-semibold uppercase tracking-wider">
+                      Pediatric Kidney Care
+                    </span>
+                  </div>
+                </Link>
+
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 text-gray-500 hover:text-navy hover:bg-gray-200/60 rounded-xl transition-colors cursor-pointer"
+                  aria-label="Close navigation menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Drawer Links List */}
+              <nav className="p-4 space-y-1 text-sm font-semibold text-gray-800">
+                {/* Home */}
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+                    pathname === '/' ? 'bg-teal/10 text-teal font-bold' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <span>Home</span>
+                  <ArrowRight className="w-4 h-4 text-gray-300" />
+                </Link>
+
+                {/* Collapsible Kidney Health Accordion */}
+                <div>
+                  <button
+                    onClick={() => setIsMobileKidneyOpen(!isMobileKidneyOpen)}
+                    className={`w-full flex items-center justify-between p-3 rounded-xl transition-colors text-left ${
+                      pathname?.startsWith('/kidney-health') || pathname?.startsWith('/treatment')
+                        ? 'bg-teal/10 text-teal font-bold'
+                        : 'hover:bg-gray-50'
+                    }`}
+                  >
+                    <span>Kidney Health Hub</span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-gray-400 transition-transform ${
+                        isMobileKidneyOpen ? 'rotate-180 text-teal' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {isMobileKidneyOpen && (
+                    <div className="pl-4 pr-2 py-1 space-y-1 bg-off-white/60 rounded-xl mt-1 text-xs">
+                      <Link
+                        href="/kidney-health"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg font-bold text-navy hover:text-teal hover:bg-white"
+                      >
+                        • Hub Overview
+                      </Link>
+                      <Link
+                        href="/kidney-health/healthy-kidneys"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      >
+                        • Understanding Healthy Kidneys
+                      </Link>
+                      <Link
+                        href="/kidney-health/symptoms"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      >
+                        • Common Symptoms
+                      </Link>
+                      <Link
+                        href="/kidney-health/diseases"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      >
+                        • Diseases Library (7 Conditions)
+                      </Link>
+                      <Link
+                        href="/kidney-health/diagnosis"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      >
+                        • Diagnosis &amp; Tests
+                      </Link>
+                      <Link
+                        href="/treatment"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      >
+                        • Dialysis &amp; Transplant Care
+                      </Link>
+                      <Link
+                        href="/kidney-health/nutrition"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      >
+                        • Nutrition &amp; Diet Tips
+                      </Link>
+                      <Link
+                        href="/faq"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg font-bold text-teal hover:bg-white"
+                      >
+                        • Frequently Asked Questions (FAQs)
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                {/* Patient Support */}
+                <Link
+                  href="/support"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+                    pathname?.startsWith('/support') ? 'bg-teal/10 text-teal font-bold' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <span>Patient &amp; Family Support</span>
+                  <ArrowRight className="w-4 h-4 text-gray-300" />
+                </Link>
+
+                {/* Programs */}
+                <Link
+                  href="/programs"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+                    pathname?.startsWith('/programs') ? 'bg-teal/10 text-teal font-bold' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <span>Programs &amp; Screening Camps</span>
+                  <ArrowRight className="w-4 h-4 text-gray-300" />
+                </Link>
+
+                {/* Collapsible About Us */}
+                <div>
+                  <button
+                    onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
+                    className={`w-full flex items-center justify-between p-3 rounded-xl transition-colors text-left ${
+                      pathname?.startsWith('/about') || pathname?.startsWith('/annual-reports')
+                        ? 'bg-teal/10 text-teal font-bold'
+                        : 'hover:bg-gray-50'
+                    }`}
+                  >
+                    <span>About PKF Foundation</span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-gray-400 transition-transform ${
+                        isMobileAboutOpen ? 'rotate-180 text-teal' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {isMobileAboutOpen && (
+                    <div className="pl-4 pr-2 py-1 space-y-1 bg-off-white/60 rounded-xl mt-1 text-xs">
+                      <Link
+                        href="/about"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg font-medium text-gray-700 hover:text-teal hover:bg-white"
+                      >
+                        • History &amp; Mission
+                      </Link>
+                      <Link
+                        href="/about/leadership"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg font-medium text-gray-700 hover:text-teal hover:bg-white"
+                      >
+                        • Leadership &amp; Medical Board
+                      </Link>
+                      <Link
+                        href="/annual-reports"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg font-medium text-gray-700 hover:text-teal hover:bg-white"
+                      >
+                        • Annual Reports &amp; Governance
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                {/* Get Involved */}
+                <Link
+                  href="/get-involved"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+                    pathname?.startsWith('/get-involved') ? 'bg-teal/10 text-teal font-bold' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <span>Get Involved</span>
+                  <ArrowRight className="w-4 h-4 text-gray-300" />
+                </Link>
+
+                {/* News & Media */}
+                <Link
+                  href="/news"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+                    pathname?.startsWith('/news') ? 'bg-teal/10 text-teal font-bold' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <span>News &amp; Event Reports</span>
+                  <ArrowRight className="w-4 h-4 text-gray-300" />
+                </Link>
+
+                {/* Contact */}
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+                    pathname === '/contact' ? 'bg-teal/10 text-teal font-bold' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <span>Contact Secretariat Desk</span>
+                  <ArrowRight className="w-4 h-4 text-gray-300" />
+                </Link>
+              </nav>
+            </div>
+
+            {/* Drawer Bottom Actions & Helpline */}
+            <div className="p-4 sm:p-5 border-t border-gray-100 bg-warm-white space-y-3">
+              <Link
+                href="/donate"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full bg-coral hover:brightness-110 active:scale-95 text-white py-3.5 px-4 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+              >
+                <Heart className="w-4 h-4 fill-white" />
+                <span>Donate to Save Young Kidneys</span>
+              </Link>
+
+              <div className="pt-2 text-xs text-gray-500 space-y-1.5">
+                <a
+                  href="tel:+911145678901"
+                  className="flex items-center gap-2 font-bold text-navy hover:text-teal transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-teal shrink-0" />
+                  <span>Helpline: +91 (011) 4567-8901</span>
+                </a>
+                <p className="flex items-center gap-2 text-[11px] text-gray-400">
+                  <MapPin className="w-3.5 h-3.5 text-teal shrink-0" />
+                  <span>South Extension-1, New Delhi</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* Global Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );

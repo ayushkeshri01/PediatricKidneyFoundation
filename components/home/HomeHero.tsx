@@ -31,7 +31,7 @@ export default function HomeHero() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold mb-6 leading-[1.08] tracking-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold mb-6 leading-[1.08] tracking-tight">
               Saving Young Kidneys, <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-turquoise to-white italic font-normal">
                 Securing Young Lives
@@ -39,7 +39,7 @@ export default function HomeHero() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-white/85 mb-8 max-w-2xl leading-relaxed font-light">
+            <p className="text-base sm:text-xl text-white/85 mb-8 max-w-2xl leading-relaxed font-light">
               Dedicated to early detection, specialized pediatric nephrology care, medical education, and compassionate financial assistance for children facing kidney disease across India.
             </p>
 
@@ -48,7 +48,7 @@ export default function HomeHero() {
               <Link
                 href="/contact?inquiry=help"
                 id="hero-cta-help-link"
-                className="bg-coral text-white px-8 py-4 rounded-xl font-bold text-center shadow-lg shadow-coral/25 hover:shadow-coral/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 group text-base"
+                className="bg-coral text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-center shadow-lg shadow-coral/25 hover:shadow-coral/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 group text-sm sm:text-base"
               >
                 Get Help for Your Child
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -56,7 +56,7 @@ export default function HomeHero() {
               <Link
                 href="/donate"
                 id="hero-cta-support-link"
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white px-8 py-4 rounded-xl font-bold text-center hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 text-base"
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-center hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 <Heart className="w-5 h-5 text-coral fill-coral/30" />
                 Support Our Mission
@@ -64,28 +64,28 @@ export default function HomeHero() {
             </div>
 
             {/* Trust Markers Bar */}
-            <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-xl">
+            <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-4 max-w-xl">
               <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-coral">
+                <p className="text-xl sm:text-3xl font-extrabold text-coral">
                   <AnimatedCounter target={15000} suffix="+" />
                 </p>
-                <p className="text-xs text-white/70 font-medium uppercase tracking-wider mt-0.5">
+                <p className="text-[10px] sm:text-xs text-white/70 font-medium uppercase tracking-wider mt-0.5">
                   Children Supported
                 </p>
               </div>
               <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-white">
+                <p className="text-xl sm:text-3xl font-extrabold text-white">
                   <AnimatedCounter target={20} suffix="+ Yrs" />
                 </p>
-                <p className="text-xs text-white/70 font-medium uppercase tracking-wider mt-0.5">
+                <p className="text-[10px] sm:text-xs text-white/70 font-medium uppercase tracking-wider mt-0.5">
                   Dedicated Care
                 </p>
               </div>
               <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-turquoise">
+                <p className="text-xl sm:text-3xl font-extrabold text-turquoise">
                   <AnimatedCounter target={100} suffix="%" />
                 </p>
-                <p className="text-xs text-white/70 font-medium uppercase tracking-wider mt-0.5">
+                <p className="text-[10px] sm:text-xs text-white/70 font-medium uppercase tracking-wider mt-0.5">
                   Doctor-Led Board
                 </p>
               </div>
@@ -128,24 +128,24 @@ export default function HomeHero() {
               </div>
 
               {/* Floating Highlight Card 1: Top Right */}
-              <div className="absolute -top-6 -right-4 sm:-right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3.5 z-20 animate-bounce-subtle">
-                <div className="w-11 h-11 rounded-xl bg-teal/10 text-teal flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-teal" />
+              <div className="absolute -top-4 right-2 sm:-top-6 sm:-right-6 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-2.5 sm:gap-3.5 z-20 animate-bounce-subtle">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-teal/10 text-teal flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-teal" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-navy uppercase tracking-wider">Early Screening</p>
-                  <p className="text-xs text-gray-500 font-medium">Prevents renal damage</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-navy uppercase tracking-wider">Early Screening</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500 font-medium">Prevents renal damage</p>
                 </div>
               </div>
 
               {/* Floating Highlight Card 2: Bottom Left */}
-              <div className="absolute -bottom-6 -left-4 sm:-left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3.5 z-20">
-                <div className="w-11 h-11 rounded-xl bg-coral/10 text-coral flex items-center justify-center shrink-0">
-                  <Users className="w-6 h-6 text-coral" />
+              <div className="absolute -bottom-4 left-2 sm:-bottom-6 sm:-left-6 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-2.5 sm:gap-3.5 z-20">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-coral/10 text-coral flex items-center justify-center shrink-0">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-coral" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-navy uppercase tracking-wider">Family Support</p>
-                  <p className="text-xs text-gray-500 font-medium">Counseling &amp; Treatment Aid</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-navy uppercase tracking-wider">Family Support</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500 font-medium">Counseling &amp; Treatment Aid</p>
                 </div>
               </div>
 
