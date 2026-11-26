@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 import { foundationData, leadershipMembers } from '@/content/foundation';
 
@@ -23,13 +24,26 @@ export default function AboutPage() {
 
         {/* Our Story */}
         <section className="bg-white p-8 sm:p-12 rounded-3xl shadow-xs border border-gray-100 mb-10">
-          <h2 className="text-2xl sm:text-3xl text-navy font-bold mb-6">
-            Our Story
-          </h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed text-base">
-            {foundationData.ourStory.map((paragraph, idx) => (
-              <p key={idx}>{paragraph}</p>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7 space-y-4 text-gray-700 leading-relaxed text-base">
+              <h2 className="text-2xl sm:text-3xl text-navy font-bold mb-4">
+                Our Story
+              </h2>
+              {foundationData.ourStory.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="lg:col-span-5 relative">
+              <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100">
+                <Image
+                  src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200"
+                  alt="Our Story"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </div>
+            </div>
           </div>
         </section>
 

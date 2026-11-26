@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { RefreshCw, Heart, ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 
@@ -35,9 +36,22 @@ export default function TreatmentPage() {
             <h2 className="text-3xl font-bold text-navy">Dialysis</h2>
           </div>
 
-          <p className="text-gray-700 leading-relaxed text-base">
-            Dialysis is a treatment that helps do the work of the kidneys when they are no longer able to function properly. Healthy kidneys remove waste, extra water, and harmful substances from the blood. When the kidneys stop working, these waste products build up in the body. Dialysis helps remove them and keeps the body healthy.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <p className="text-gray-700 leading-relaxed text-base">
+                Dialysis is a treatment that helps do the work of the kidneys when they are no longer able to function properly. Healthy kidneys remove waste, extra water, and harmful substances from the blood. When the kidneys stop working, these waste products build up in the body. Dialysis helps remove them and keeps the body healthy.
+              </p>
+            </div>
+            <div className="lg:col-span-4 relative h-48 sm:h-56 w-full rounded-2xl overflow-hidden shadow-md">
+              <Image
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"
+                alt="Dialysis"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+            </div>
+          </div>
 
           <div className="p-6 bg-off-white rounded-2xl border border-gray-100">
             <h3 className="font-bold text-navy text-lg mb-2">When Is Dialysis Needed?</h3>
@@ -90,9 +104,22 @@ export default function TreatmentPage() {
             <h2 className="text-3xl font-bold text-navy">Kidney Transplant</h2>
           </div>
 
-          <p className="text-gray-700 leading-relaxed text-base">
-            A kidney transplant is a surgery in which a healthy kidney from a donor is placed into the body of a child whose kidneys are no longer working properly. For many children with advanced kidney disease, a kidney transplant offers the best chance of leading a healthy and active life.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <p className="text-gray-700 leading-relaxed text-base">
+                A kidney transplant is a surgery in which a healthy kidney from a donor is placed into the body of a child whose kidneys are no longer working properly. For many children with advanced kidney disease, a kidney transplant offers the best chance of leading a healthy and active life.
+              </p>
+            </div>
+            <div className="lg:col-span-4 relative h-48 sm:h-56 w-full rounded-2xl overflow-hidden shadow-md">
+              <Image
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800"
+                alt="Kidney Transplant"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+            </div>
+          </div>
 
           <div className="p-6 bg-off-white rounded-2xl border border-gray-100">
             <h3 className="font-bold text-navy text-lg mb-2">Who Needs a Kidney Transplant?</h3>

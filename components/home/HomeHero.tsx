@@ -83,22 +83,38 @@ export default function HomeHero() {
             </div>
           </div>
 
-          {/* Right Column: Clean Visual with Official Logo and Pediatric Care */}
-          <div className="lg:col-span-5 relative flex justify-center">
-            <div className="relative w-full max-w-md bg-white/5 backdrop-blur-md rounded-3xl p-6 border border-white/10 shadow-2xl flex flex-col items-center">
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 bg-white rounded-2xl p-4 shadow-lg flex items-center justify-center overflow-hidden mb-6">
-                <Image
-                  src="/logo.jpg"
-                  alt="Pediatric Kidney Foundation Logo"
-                  width={200}
-                  height={200}
-                  className="object-contain"
-                  priority
-                />
+          {/* Right Column: Relevant Pediatric Care Photo with Official Logo Badge */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative mx-auto max-w-md lg:max-w-none">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-navy/60">
+                <div className="relative h-[420px] sm:h-[460px] w-full">
+                  <Image
+                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=1200"
+                    alt="Pediatric kidney care and medical support"
+                    fill
+                    priority
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
+                </div>
               </div>
-              <div className="text-center">
-                <h3 className="text-lg font-bold text-white mb-1">Pediatric Kidney Foundation</h3>
-                <p className="text-xs text-white/70">Saving Young Kidneys, Securing Young Lives</p>
+
+              {/* Floating Logo Badge */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-3 rounded-2xl shadow-2xl border border-gray-100 flex items-center gap-3">
+                <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-white">
+                  <Image
+                    src="/logo.jpg"
+                    alt="Pediatric Kidney Foundation"
+                    fill
+                    sizes="56px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="pr-2">
+                  <span className="font-extrabold text-navy text-sm block">Pediatric Kidney Foundation</span>
+                  <span className="text-[10px] text-teal font-semibold block">Saving Young Kidneys, Securing Young Lives</span>
+                </div>
               </div>
             </div>
           </div>

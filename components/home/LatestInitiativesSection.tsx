@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Tent, Megaphone, Handshake, Calendar, ArrowRight } from 'lucide-react';
 
 export default function LatestInitiativesSection() {
@@ -7,22 +8,26 @@ export default function LatestInitiativesSection() {
     {
       title: 'Upcoming Camps',
       icon: Tent,
-      href: '/programs'
+      href: '/programs',
+      image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600'
     },
     {
       title: 'Awareness Drives',
       icon: Megaphone,
-      href: '/programs'
+      href: '/programs',
+      image: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=600'
     },
     {
       title: 'Partnerships',
       icon: Handshake,
-      href: '/get-involved'
+      href: '/get-involved',
+      image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&q=80&w=600'
     },
     {
       title: 'Events',
       icon: Calendar,
-      href: '/news'
+      href: '/news',
+      image: 'https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&q=80&w=600'
     }
   ];
 
@@ -42,15 +47,29 @@ export default function LatestInitiativesSection() {
               <Link
                 key={idx}
                 href={item.href}
-                className="group p-8 bg-off-white rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-lg transition-all flex flex-col items-center text-center justify-between"
+                className="group bg-off-white rounded-2xl overflow-hidden border border-gray-100 hover:border-teal/30 hover:shadow-xl transition-all flex flex-col justify-between"
               >
-                <div className="w-14 h-14 rounded-2xl bg-teal/10 flex items-center justify-center text-teal mb-4 group-hover:scale-110 transition-transform">
-                  <Icon className="w-7 h-7" />
+                <div>
+                  <div className="relative h-44 w-full overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-3 left-4 right-4 flex items-center gap-2.5 text-white">
+                      <div className="w-8 h-8 rounded-lg bg-teal flex items-center justify-center shrink-0">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-bold text-base text-white">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-bold text-navy text-lg group-hover:text-teal transition-colors">
-                  {item.title}
-                </h3>
-                <div className="mt-4 pt-3 flex items-center gap-1 text-xs font-bold text-teal">
+                <div className="p-4 pt-3 flex items-center justify-between text-xs font-bold text-teal">
                   <span>View Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
