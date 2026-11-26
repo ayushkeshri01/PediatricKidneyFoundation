@@ -21,13 +21,13 @@ export default function LatestInitiativesSection() {
       title: 'Partnerships',
       icon: Handshake,
       href: '/get-involved',
-      image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&q=80&w=600'
+      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=600'
     },
     {
       title: 'Events',
       icon: Calendar,
       href: '/news',
-      image: 'https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&q=80&w=600'
+      image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=600'
     }
   ];
 

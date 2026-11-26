@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <!-- Max Healthcare Icon -->
+  <g transform="translate(12, 10)">
+    <!-- Max Red Rounded Square -->
+    <rect width="60" height="60" rx="14" fill="#E11D48" />
+    <!-- White Plus / Medical Cross with Curved Ends -->
+    <path d="M26 18 C26 16.5 27.5 15 29 15 H31 C32.5 15 34 16.5 34 18 V26 H42 C43.5 26 45 27.5 45 29 V31 C45 32.5 43.5 34 42 34 H34 V42 C34 43.5 32.5 45 31 45 H29 C27.5 45 26 43.5 26 42 V34 H18 C16.5 34 15 32.5 15 31 V29 C15 27.5 16.5 26 18 26 H26 V18 Z" fill="#FFFFFF" />
+  </g>
+
+  <!-- Typography -->
+  <text x="84" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#0F172A" letter-spacing="-0.5">Max</text>
+  <text x="133" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="20" fill="#E11D48">Healthcare</text>
+  <text x="84" y="50" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="10" fill="#334155" letter-spacing="0.2">Super Speciality Hospital</text>
+  <text x="84" y="63" font-family="system-ui, -apple-system, sans-serif" font-weight="500" font-size="8.5" fill="#64748B">Saket • New Delhi</text>
+</svg>

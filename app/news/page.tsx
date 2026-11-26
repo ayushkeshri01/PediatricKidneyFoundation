@@ -19,9 +19,9 @@ export default function NewsPage() {
   };
 
   const newsImages: Record<string, string> = {
-    'event-reports': 'https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&q=80&w=600',
-    'awareness-campaigns': 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=600',
-    'media-coverage': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=600',
+    'event-reports': 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=600',
+    'awareness-campaigns': 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=600',
+    'media-coverage': 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=600',
     'world-kidney-day-activities': 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600'
   };
 
@@ -41,7 +41,7 @@ export default function NewsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-10">
           {newsCategories.map((item) => {
             const Icon = iconMap[item.slug] || Newspaper;
-            const imgUrl = newsImages[item.slug] || 'https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&q=80&w=600';
+            const imgUrl = newsImages[item.slug] || 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=600';
 
             return (
               <div

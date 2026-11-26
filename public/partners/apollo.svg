@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <!-- Apollo Torch / Flame Icon -->
+  <g transform="translate(12, 10)">
+    <rect width="60" height="60" rx="14" fill="#007C9E" fill-opacity="0.08" />
+    <!-- Stylized Apollo Flame / Torch -->
+    <path d="M30 14 C25 22 20 28 24 38 C26 42 30 45 35 44 C42 43 45 36 43 30 C41 24 35 20 30 14 Z" fill="#F59E0B" />
+    <path d="M28 20 C24 26 22 30 25 36 C27 40 31 41 33 39 C36 37 36 32 34 28 C32 24 29 22 28 20 Z" fill="#EF4444" opacity="0.85" />
+    <path d="M22 42 L38 42 L35 50 L25 50 Z" fill="#007C9E" rx="1" />
+  </g>
+
+  <!-- Apollo Typography -->
+  <text x="82" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="20" fill="#007C9E" letter-spacing="-0.3">Apollo</text>
+  <text x="144" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="18" fill="#1E293B">Hospitals</text>
+  <text x="82" y="52" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="10.5" fill="#E11D48" letter-spacing="0.3">INDRAPRASTHA • NEW DELHI</text>
+  <text x="82" y="64" font-family="system-ui, -apple-system, sans-serif" font-weight="500" font-size="8.5" fill="#64748B" font-style="italic">Touching Lives</text>
+</svg>
