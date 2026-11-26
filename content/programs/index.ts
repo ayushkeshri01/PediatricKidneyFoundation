@@ -1,52 +1,38 @@
-import { Program } from '@/types/content';
+export interface ProgramItem {
+  id: string;
+  slug: string;
+  title: string;
+}
 
-export const programsData: Program[] = [
+export const programsData: ProgramItem[] = [
   {
-    id: 'rural-camps',
+    id: 'rural-awareness-camps',
     slug: 'rural-awareness-camps',
-    title: 'Rural Awareness Camps',
-    description: 'Bringing pediatric kidney health awareness, screening, and education to rural communities.',
-    icon: 'tent',
-    focus: 'Rural Healthcare Outreach'
+    title: 'Rural Awareness Camps'
   },
   {
-    id: 'school-programs',
+    id: 'school-awareness-program',
     slug: 'school-awareness-program',
-    title: 'School Awareness Program',
-    description: 'Educating school students, teachers, and parents on healthy habits, hydration, and kidney care.',
-    icon: 'school',
-    focus: 'School Education'
+    title: 'School Awareness Program'
   },
   {
-    id: 'screening-drives',
+    id: 'pediatric-screening-drives',
     slug: 'pediatric-screening-drives',
-    title: 'Pediatric Screening Drives',
-    description: 'Community screening checkups for early identification of pediatric kidney conditions.',
-    icon: 'stethoscope',
-    focus: 'Early Diagnosis'
+    title: 'Pediatric Screening Drives'
   },
   {
     id: 'nutrition-education',
     slug: 'nutrition-education',
-    title: 'Nutrition Education',
-    description: 'Empowering families with knowledge on balanced diets, salt limits, and wholesome nutrition.',
-    icon: 'salad',
-    focus: 'Nutrition'
+    title: 'Nutrition Education'
   },
   {
     id: 'parent-workshops',
     slug: 'parent-workshops',
-    title: 'Parent Workshops',
-    description: 'Support workshops for parents navigating childhood kidney disease and care management.',
-    icon: 'users',
-    focus: 'Family Support'
+    title: 'Parent Workshops'
   },
   {
-    id: 'advocacy',
+    id: 'advocacy-public-awareness',
     slug: 'advocacy-public-awareness',
-    title: 'Advocacy & Public Awareness',
-    description: 'Promoting childhood kidney health recognition and equitable care access across society.',
-    icon: 'megaphone',
-    focus: 'Public Awareness'
+    title: 'Advocacy & Public Awareness'
   }
 ];

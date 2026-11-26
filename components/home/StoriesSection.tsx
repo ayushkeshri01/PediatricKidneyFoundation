@@ -1,43 +1,33 @@
 import React from 'react';
-import Image from 'next/image';
-import { Quote } from 'lucide-react';
-import { patientStories } from '@/content/stories';
+import Link from 'next/link';
+import { MessageSquareHeart, ArrowRight } from 'lucide-react';
 
 export default function StoriesSection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 reveal active">
-          <span className="text-teal font-bold uppercase tracking-widest text-xs mb-2 block">Voices of Hope</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-navy">Stories &amp; Testimonials</h2>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold text-navy">
+            Stories &amp; Testimonials
+          </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {patientStories.map((story, idx) => (
-            <div
-              key={story.id}
-              className={`flex flex-col md:flex-row items-center gap-8 bg-off-white p-8 rounded-3xl ${
-                idx === 0 ? 'reveal-left' : 'reveal-right'
-              } active hover:shadow-md transition-shadow`}
-            >
-              <div className="relative w-32 h-32 shrink-0 rounded-full overflow-hidden shadow-lg group">
-                <Image
-                  src={story.image}
-                  alt={story.patientName}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="128px"
-                />
-              </div>
-              <div>
-                <Quote className="w-8 h-8 text-teal/30 mb-2 rotate-180" />
-                <p className="italic text-gray-600 mb-4 font-light text-lg leading-relaxed">
-                  &ldquo;{story.quote}&rdquo;
-                </p>
-                <p className="font-bold text-navy">— {story.family}</p>
-                <p className="text-xs uppercase tracking-widest text-teal mt-0.5">{story.location}</p>
-              </div>
-            </div>
-          ))}
+        <div className="max-w-2xl mx-auto bg-warm-white p-8 sm:p-10 rounded-3xl border border-gray-100 text-center flex flex-col items-center">
+          <div className="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center mb-4">
+            <MessageSquareHeart className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-bold text-navy mb-3">
+            Stories &amp; Testimonials
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            Parent Support Groups
+          </p>
+          <Link
+            href="/support"
+            className="inline-flex items-center gap-2 bg-teal text-white px-6 py-3 rounded-xl font-bold text-sm hover:brightness-110 transition-all cursor-pointer"
+          >
+            Parent Support Groups
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

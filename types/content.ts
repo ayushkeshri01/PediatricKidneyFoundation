@@ -19,8 +19,8 @@ export interface DiagnosticTest {
   name: string;
   tagline: string;
   description: string;
-  purpose: string;
-  whatToExpect: string;
+  purpose?: string;
+  whatToExpect?: string;
   iconName: string;
 }
 
@@ -54,26 +54,26 @@ export interface Program {
   id: string;
   slug: string;
   title: string;
-  description: string;
-  icon: string;
-  focus: string;
+  description?: string;
+  icon?: string;
+  focus?: string;
   impactMetric?: string;
 }
 
 export interface PatientStory {
-  id: string;
-  patientName: string;
-  family: string;
-  location: string;
-  quote: string;
-  image: string;
+  id?: string;
+  patientName?: string;
+  family?: string;
+  location?: string;
+  quote?: string;
+  image?: string;
   storyDetails?: string;
 }
 
 export interface Partner {
   name: string;
-  type: 'Hospital' | 'Medical College' | 'CSR Partner' | 'NGO';
-  icon: string;
+  type?: 'Hospital' | 'Medical College' | 'CSR Partner' | 'NGO';
+  icon?: string;
 }
 
 export interface SearchResultItem {

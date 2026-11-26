@@ -2,7 +2,7 @@ import { diseasesData } from '@/content/diseases';
 import { diagnosticTests } from '@/content/diagnosis';
 import { treatmentData } from '@/content/treatment';
 import { programsData } from '@/content/programs';
-import { newsArticles } from '@/content/news';
+import { newsCategories } from '@/content/news';
 import { pkfFAQs } from '@/content/faq';
 import { SearchResultItem } from '@/types/content';
 
@@ -15,7 +15,7 @@ export function getSiteSearchIndex(): SearchResultItem[] {
       title: d.name,
       description: d.shortDescription,
       href: `/kidney-health/diseases/${d.slug}`,
-      category: 'Condition & Disease'
+      category: 'Kidney Diseases in Children'
     });
   });
 
@@ -25,7 +25,7 @@ export function getSiteSearchIndex(): SearchResultItem[] {
       title: t.name,
       description: t.description,
       href: `/kidney-health/diagnosis#${t.slug}`,
-      category: 'Diagnostic Test'
+      category: 'Diagnosis & Investigations'
     });
   });
 
@@ -35,7 +35,7 @@ export function getSiteSearchIndex(): SearchResultItem[] {
       title: tr.name,
       description: tr.description,
       href: `/treatment#${tr.slug}`,
-      category: 'Treatment'
+      category: 'Treatment Journey'
     });
   });
 
@@ -43,19 +43,19 @@ export function getSiteSearchIndex(): SearchResultItem[] {
   programsData.forEach(p => {
     items.push({
       title: p.title,
-      description: p.description,
+      description: p.title,
       href: `/programs#${p.slug}`,
-      category: 'Program'
+      category: 'Programs & Initiatives'
     });
   });
 
   // News
-  newsArticles.forEach(n => {
+  newsCategories.forEach(n => {
     items.push({
       title: n.title,
-      description: n.summary,
-      href: `/news/${n.slug}`,
-      category: 'News & Updates'
+      description: n.title,
+      href: `/news#${n.slug}`,
+      category: 'News & Media'
     });
   });
 
@@ -65,59 +65,47 @@ export function getSiteSearchIndex(): SearchResultItem[] {
       title: f.question,
       description: f.answer,
       href: `/faq`,
-      category: 'Frequently Asked Question'
+      category: 'Frequently Asked Questions'
     });
   });
 
-  // Main Pages
+  // Main Pages strictly from document
   items.push(
     {
-      title: 'Healthy Kidneys in Children',
-      description: 'Understanding renal filtration, fluid balance, growth hormone regulation, and pediatric kidney functions.',
-      href: '/kidney-health/healthy-kidneys',
-      category: 'Education'
-    },
-    {
-      title: 'Common Symptoms of Unhealthy Kidneys',
-      description: 'Recognizing facial puffiness, hematuria (blood), frothy urine, growth failure, and high blood pressure.',
-      href: '/kidney-health/symptoms',
-      category: 'Education'
-    },
-    {
-      title: 'Nutrition & Lifestyle for Young Kidneys',
-      description: 'Healthy eating guidelines, salt restriction, hydration habits, active play, and diet advice.',
-      href: '/kidney-health/nutrition',
-      category: 'Lifestyle & Diet'
-    },
-    {
-      title: 'Our Story & Foundation History',
-      description: 'Founded on 5 April 2004 by veteran pediatric nephrologists to advance pediatric kidney care.',
+      title: 'About PKF',
+      description: 'The Pediatric Kidney Foundation (PKF) is a nonprofit organization dedicated exclusively to improving kidney health among children.',
       href: '/about',
       category: 'About PKF'
     },
     {
-      title: 'Leadership & Medical Advisory Board',
-      description: 'Distinguished pediatric nephrologists, clinical directors, trustees, and public health experts.',
+      title: 'Leadership',
+      description: 'Dr. RN Srivastava, Dr. AS Vasudev, Dr. Arvind Bagga, and board members.',
       href: '/about/leadership',
       category: 'About PKF'
     },
     {
-      title: 'Patient & Family Support Group',
-      description: 'Empowering families with guidance, peer connections, emotional resilience, and financial aid pathways.',
+      title: 'Kidney Health Hub',
+      description: 'Understanding Healthy Kidneys, Common Symptoms of Unhealthy kidneys, Kidney Diseases, Diagnosis, Treatment, and Nutrition.',
+      href: '/kidney-health',
+      category: 'Kidney Health Hub'
+    },
+    {
+      title: 'Patient & Family Support',
+      description: 'Need Help? Parent Support Group.',
       href: '/support',
-      category: 'Support'
+      category: 'Patient & Family Support'
     },
     {
-      title: 'Donate & Support Our Mission',
-      description: 'Provide life-saving dialysis, corrective surgeries, and pediatric renal care for children in need.',
-      href: '/donate',
-      category: 'Donation'
+      title: 'Get Involved',
+      description: "Improving children's kidney health requires the collective efforts of individuals and organizations.",
+      href: '/get-involved',
+      category: 'Get Involved'
     },
     {
-      title: 'Contact Pediatric Kidney Foundation',
-      description: 'Reach our team in New Delhi (E-11, South Extension-1) via phone, email, or contact form.',
+      title: 'Contact Us',
+      description: 'Pediatric Kidney Foundation, E-11, South Extension-1, New Delhi-110049.',
       href: '/contact',
-      category: 'Contact'
+      category: 'Contact Us'
     }
   );
 

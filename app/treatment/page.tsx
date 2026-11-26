@@ -1,12 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { RefreshCw, Heart, ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 
 export const metadata = {
   title: 'Treatment Journey | Pediatric Kidney Foundation',
-  description: 'Treatment Journey: Dialysis and Kidney Transplant for children.'
+  description: 'Treatment Journey: Dialysis and Kidney Transplant.'
 };
 
 export default function TreatmentPage() {
@@ -22,15 +21,9 @@ export default function TreatmentPage() {
 
         {/* Header */}
         <div className="my-8 max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-teal block mb-2">
-            Kidney Health Hub
-          </span>
           <h1 className="text-4xl text-navy font-bold mb-4">
             Treatment Journey
           </h1>
-          <p className="text-gray-600 leading-relaxed text-base">
-            Essential guidance for families on dialysis and kidney transplantation.
-          </p>
         </div>
 
         {/* Dialysis Section */}
@@ -55,16 +48,17 @@ export default function TreatmentPage() {
 
           <div>
             <h3 className="font-bold text-navy text-lg mb-4">Types of Dialysis</h3>
+            <p className="text-sm text-gray-700 mb-4">There are two main types of dialysis:</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-6 bg-warm-white rounded-2xl border border-gray-100">
-                <h4 className="font-bold text-navy text-base mb-2">Peritoneal Dialysis (PD):</h4>
+                <h4 className="font-bold text-navy text-base mb-2">Peritoneal Dialysis (PD)</h4>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   In this type of dialysis, a special fluid is put into the abdomen through a soft tube. The lining of the abdomen acts as a natural filter to remove waste and extra fluid. This treatment can often be done at home after proper training.
                 </p>
               </div>
 
               <div className="p-6 bg-warm-white rounded-2xl border border-gray-100">
-                <h4 className="font-bold text-navy text-base mb-2">Hemodialysis (HD):</h4>
+                <h4 className="font-bold text-navy text-base mb-2">Hemodialysis (HD)</h4>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   In hemodialysis, blood is passed through a dialysis machine that removes waste and extra fluid before returning the cleaned blood to the body. This treatment is usually done in a hospital or dialysis centre several times a week.
                 </p>
@@ -75,7 +69,7 @@ export default function TreatmentPage() {
           <div className="p-6 bg-off-white rounded-2xl border border-gray-100">
             <h3 className="font-bold text-navy text-lg mb-2">Is Dialysis Permanent?</h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              Not always. Some children need dialysis only for a short time until their kidneys recover. Others may need dialysis for a longer period while waiting for a kidney transplant. Your child&apos;s kidney specialist will discuss the best treatment plan.
+              In some children with acute kidney injury, dialysis is only needed for a short period until the kidneys recover. In children with chronic kidney disease, dialysis may be needed until a kidney transplant can be done.
             </p>
           </div>
 
@@ -113,11 +107,11 @@ export default function TreatmentPage() {
             <ul className="space-y-2 text-sm text-gray-700">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0 mt-2" />
-                <span>A living donor, such as a parent or a close relative who is healthy and a suitable match.</span>
+                <span>A living donor, such as a parent or a close relative who is healthy and a suitable match</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0 mt-2" />
-                <span>A deceased donor, whose family has agreed to donate organs after death.</span>
+                <span>A deceased donor, whose family has agreed to donate organs after death</span>
               </li>
             </ul>
             <p className="text-sm text-gray-700 leading-relaxed mt-3">
@@ -128,7 +122,7 @@ export default function TreatmentPage() {
           <div className="p-6 bg-off-white rounded-2xl border border-gray-100">
             <h3 className="font-bold text-navy text-lg mb-2">What Happens After the Transplant?</h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              After the transplant, the new kidney starts doing the work of the damaged kidneys. The child will need to take medicines every day to prevent the body from rejecting the new kidney. Regular follow-up visits and blood tests are important to keep the transplanted kidney healthy.
+              After surgery, the child will need to take medicines every day to prevent the body from rejecting the new kidney. Regular follow-up visits with the pediatric nephrologist are essential to check kidney function and adjust medicines.
             </p>
           </div>
 
@@ -142,7 +136,7 @@ export default function TreatmentPage() {
           <div className="p-6 bg-off-white rounded-2xl border border-gray-100">
             <h3 className="font-bold text-navy text-lg mb-2">When Should You Talk to Your Doctor?</h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              If your child has advanced kidney disease or is on long-term dialysis, speak to your child&apos;s kidney specialist about whether a kidney transplant is the right treatment option. Early planning and regular follow-up can help achieve the best possible outcome.
+              If your child has advanced kidney disease, talk to your pediatric nephrologist about whether dialysis or a kidney transplant is the right option. Early planning and family counseling help ensure the best possible care for your child.
             </p>
           </div>
         </div>
