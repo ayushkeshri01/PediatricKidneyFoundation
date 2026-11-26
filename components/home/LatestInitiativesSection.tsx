@@ -8,13 +8,13 @@ export default function LatestInitiativesSection() {
       title: 'Upcoming Camps',
       desc: 'Mobile diagnostic and pediatric screening camps organized in community clinics and rural health centers.',
       icon: Tent,
-      href: '/programs#camps'
+      href: '/programs#rural-awareness-camps'
     },
     {
       title: 'Awareness Drives',
       desc: 'School health programs and public workshops on healthy hydration, nutrition, and early warning signs.',
       icon: Megaphone,
-      href: '/programs#drives'
+      href: '/programs#school-awareness-program'
     },
     {
       title: 'Partnerships',
