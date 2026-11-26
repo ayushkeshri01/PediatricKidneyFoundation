@@ -66,7 +66,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-teal">Phone</h3>
-                  <p className="text-sm text-white/90 mt-1">+91 (011) 4567-8901</p>
+                  <p className="text-sm text-white/90 mt-1">+91 11 2469 8888</p>
                 </div>
               </div>
 
@@ -77,7 +77,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-teal">Email</h3>
-                  <p className="text-sm text-white/90 mt-1">contact@pkf-india.org</p>
+                  <p className="text-sm text-white/90 mt-1">contact@pediatrickidneyfoundation.org</p>
                 </div>
               </div>
 
@@ -89,8 +89,8 @@ export default function ContactPage() {
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider text-teal">Office Hours</h3>
                   <p className="text-sm text-white/90 mt-1">
-                    Monday – Friday: 9:00 AM – 5:30 PM (IST)<br />
-                    Saturday: 9:30 AM – 1:30 PM (IST)
+                    Monday – Friday: 9:00 AM – 5:00 PM<br />
+                    Saturday: 9:00 AM – 1:00 PM
                   </p>
                 </div>
               </div>
