@@ -54,7 +54,7 @@ export const latestInitiatives = [
 ];
 
 export const partnerCategories = [
-  { title: 'Hospital logos', icon: 'hospital' },
+  { title: 'Hospitals', icon: 'hospital' },
   { title: 'Medical Colleges', icon: 'school' },
   { title: 'CSR Partners', icon: 'heart-handshake' },
   { title: 'NGOs', icon: 'shield' }

@@ -4,7 +4,7 @@ import { Hospital, School, HeartHandshake, Shield } from 'lucide-react';
 
 export default function PartnersSection() {
   const partnerCategories = [
-    { title: 'Hospital logos', icon: Hospital, href: '#hospitals' },
+    { title: 'Hospitals', icon: Hospital, href: '#hospitals' },
     { title: 'Medical Colleges', icon: School },
     { title: 'CSR Partners', icon: HeartHandshake },
     { title: 'NGOs', icon: Shield }
