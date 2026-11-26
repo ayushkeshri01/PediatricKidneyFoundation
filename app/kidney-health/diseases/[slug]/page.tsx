@@ -155,7 +155,7 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
                 <div className="w-10 h-10 rounded-lg bg-teal/10 text-teal flex items-center justify-center">
                   <HelpCircle className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-navy">Why Does It Happen? (Causes)</h2>
+                <h2 className="text-2xl font-bold text-navy">Causes</h2>
               </div>
               <ul className="space-y-3">
                 {disease.causes.map((cause, idx) => (
@@ -173,11 +173,8 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
                 <div className="w-10 h-10 rounded-lg bg-navy/10 text-navy flex items-center justify-center">
                   <Stethoscope className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-navy">How Is It Diagnosed?</h2>
+                <h2 className="text-2xl font-bold text-navy">How is it Diagnosed?</h2>
               </div>
-              <p className="text-sm text-gray-600 mb-4">
-                Your pediatric nephrologist may recommend one or more targeted investigations to assess kidney function and structure:
-              </p>
               <ul className="space-y-3">
                 {disease.diagnosis.map((test, idx) => (
                   <li
@@ -199,7 +196,7 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
                 <div className="w-10 h-10 rounded-lg bg-teal/10 text-teal flex items-center justify-center">
                   <Pill className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-navy">Treatment &amp; Care Paths</h2>
+                <h2 className="text-2xl font-bold text-navy">Treatment</h2>
               </div>
               <ul className="space-y-3">
                 {disease.treatment.map((t, idx) => (
@@ -219,9 +216,6 @@ export default async function DiseaseDetailPage({ params }: PageProps) {
                 </div>
                 <h2 className="text-2xl font-bold text-navy">When Should You See a Doctor?</h2>
               </div>
-              <p className="text-sm text-gray-700 mb-4 font-medium">
-                Seek medical attention or visit an emergency room immediately if you notice any of these critical signs:
-              </p>
               <ul className="space-y-2">
                 {disease.whenToSeeDoctor.map((warning, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-sm text-charcoal font-medium">

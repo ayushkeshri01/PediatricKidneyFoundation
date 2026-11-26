@@ -1,23 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
-import { Hospital, BookOpen, Users, Heart, Hand, ArrowRight } from 'lucide-react';
+import { Stethoscope, BookOpen, Users, Heart, Hand } from 'lucide-react';
 
 export default function QuickAccess() {
   const quickCards = [
     {
       id: 'quick-care-card',
-      title: 'Find Care',
-      subtitle: 'Specialist Directory',
-      href: '/contact?inquiry=care',
-      icon: Hospital,
+      title: 'Find a Pediatric Nephrologist',
+      subtitle: 'Doctor Directory',
+      href: '/contact?inquiry=doctor',
+      icon: Stethoscope,
       borderColor: 'border-teal',
       iconBg: 'bg-teal/10',
       iconColor: 'text-teal'
     },
     {
       id: 'quick-info-card',
-      title: 'Information',
-      subtitle: 'Medical Library',
+      title: 'Kidney Health Hub',
+      subtitle: 'Educational Library',
       href: '/kidney-health',
       icon: BookOpen,
       borderColor: 'border-turquoise',
@@ -26,8 +26,8 @@ export default function QuickAccess() {
     },
     {
       id: 'quick-support-card',
-      title: 'Family Support',
-      subtitle: 'Counseling & Aid',
+      title: 'Parent Support Groups',
+      subtitle: 'Family Guidance',
       href: '/support',
       icon: Users,
       borderColor: 'border-sage',
@@ -37,7 +37,7 @@ export default function QuickAccess() {
     {
       id: 'quick-donate-card',
       title: 'Donate',
-      subtitle: 'Subsidize Treatment',
+      subtitle: 'Support Our Mission',
       href: '/donate',
       icon: Heart,
       borderColor: 'border-coral',
@@ -46,8 +46,8 @@ export default function QuickAccess() {
     },
     {
       id: 'quick-involved-card',
-      title: 'Get Involved',
-      subtitle: 'Volunteers & CSR',
+      title: 'Partner With Us',
+      subtitle: 'Get Involved',
       href: '/get-involved',
       icon: Hand,
       borderColor: 'border-navy',

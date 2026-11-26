@@ -4,55 +4,49 @@ export const programsData: Program[] = [
   {
     id: 'rural-camps',
     slug: 'rural-awareness-camps',
-    title: 'Rural Awareness & Early Screening Camps',
-    description: 'Bringing pediatric kidney health specialists, free urine test strips, and point-of-care diagnostics to underserved rural communities and peripheral health centers.',
+    title: 'Rural Awareness Camps',
+    description: 'Bringing pediatric kidney health awareness, screening, and education to rural communities.',
     icon: 'tent',
-    focus: 'Early Detection in Remote Regions',
-    impactMetric: '50+ Camps Conducted'
+    focus: 'Rural Healthcare Outreach'
   },
   {
     id: 'school-programs',
     slug: 'school-awareness-program',
-    title: 'School Health & Hydration Program',
-    description: 'Educating school teachers, students, and parents about hydration habits, healthy lunchbox choices, recognizing warning signs of kidney issues, and promoting regular bathroom access.',
+    title: 'School Awareness Program',
+    description: 'Educating school students, teachers, and parents on healthy habits, hydration, and kidney care.',
     icon: 'school',
-    focus: 'Childhood Habit Formation',
-    impactMetric: '35,000+ Students Reached'
+    focus: 'School Education'
   },
   {
     id: 'screening-drives',
     slug: 'pediatric-screening-drives',
     title: 'Pediatric Screening Drives',
-    description: 'Conducting comprehensive kidney checkups, blood pressure measurements, and urinalysis for high-risk children, including siblings of patients with congenital or genetic renal conditions.',
+    description: 'Community screening checkups for early identification of pediatric kidney conditions.',
     icon: 'stethoscope',
-    focus: 'High-Risk Cohort Monitoring',
-    impactMetric: '12,000+ Free Screenings'
+    focus: 'Early Diagnosis'
   },
   {
     id: 'nutrition-education',
     slug: 'nutrition-education',
-    title: 'Childhood Nutrition & Salt Reduction',
-    description: 'Workshops for families on preparing appealing, kidney-friendly meals, understanding salt content in packaged items, and meeting micronutrient requirements during childhood.',
+    title: 'Nutrition Education',
+    description: 'Empowering families with knowledge on balanced diets, salt limits, and wholesome nutrition.',
     icon: 'salad',
-    focus: 'Practical Dietary Empowerment',
-    impactMetric: '1,500+ Families Trained'
+    focus: 'Nutrition'
   },
   {
     id: 'parent-workshops',
     slug: 'parent-workshops',
-    title: 'Parent Empowerment & Caregiver Workshops',
-    description: 'Peer-led and nephrologist-supervised support sessions for families managing chronic kidney conditions, home peritoneal dialysis, and post-transplant medication regimens.',
+    title: 'Parent Workshops',
+    description: 'Support workshops for parents navigating childhood kidney disease and care management.',
     icon: 'users',
-    focus: 'Psychosocial & Clinical Guidance',
-    impactMetric: 'Monthly Cohorts'
+    focus: 'Family Support'
   },
   {
     id: 'advocacy',
     slug: 'advocacy-public-awareness',
-    title: 'Advocacy & Public Healthcare Policy',
-    description: 'Working with health authorities, pediatric societies, and policymakers to advocate for affordable pediatric dialysis consumables, immunosuppressant availability, and subsidized care.',
+    title: 'Advocacy & Public Awareness',
+    description: 'Promoting childhood kidney health recognition and equitable care access across society.',
     icon: 'megaphone',
-    focus: 'Systemic Healthcare Accessibility',
-    impactMetric: 'National Dialogues'
+    focus: 'Public Awareness'
   }
 ];

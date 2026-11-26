@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Stethoscope, Droplets, Activity, Scan, Microscope, HeartPulse, ArrowRight } from 'lucide-react';
+import { Droplets, Activity, Scan, Microscope, HeartPulse, ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 import { diagnosticTests } from '@/content/diagnosis';
 
 export const metadata = {
   title: 'Diagnosis & Investigations | Pediatric Kidney Foundation',
-  description: 'Parent guides to urine tests, blood tests (KFT), renal ultrasound, kidney biopsy, and pediatric blood pressure monitoring.'
+  description: 'Urine Tests, Blood Tests, Ultrasound, Kidney Biopsy, and Blood Pressure Monitoring for children.'
 };
 
 export default function DiagnosisPage() {
@@ -39,32 +39,31 @@ export default function DiagnosisPage() {
 
         {/* Header */}
         <div className="my-8 max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-teal bg-teal/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
-            Parent Guide to Investigations
+          <span className="text-xs font-bold uppercase tracking-widest text-teal block mb-2">
+            Kidney Health Hub
           </span>
           <h1 className="text-4xl text-navy font-bold mb-4">
-            Diagnosis &amp; Medical Tests
+            Diagnosis &amp; Investigations
           </h1>
           <p className="text-gray-600 leading-relaxed text-base">
-            Medical tests can feel daunting for children and families. Here is a clear, compassionate overview of standard pediatric kidney investigations, why they are ordered, and what you can expect during each procedure.
+            Essential tests and procedures recommended by doctors to assess your child&apos;s kidney function and health.
           </p>
         </div>
 
-        {/* Diagnostic Tests Detailed Cards with Visuals */}
-        <div className="space-y-10 my-10">
+        {/* Tests List */}
+        <div className="space-y-8 my-10">
           {diagnosticTests.map((test) => {
-            const Icon = iconMap[test.iconName] || Stethoscope;
+            const Icon = iconMap[test.iconName] || Activity;
             const imgUrl = testImages[test.slug] || 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=600';
 
             return (
               <div
                 key={test.id}
                 id={test.slug}
-                className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-xl transition-all"
+                className="bg-white rounded-3xl border border-gray-100 shadow-xs overflow-hidden hover:shadow-lg transition-all"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12">
-                  {/* Visual Left Column */}
-                  <div className="lg:col-span-4 relative min-h-[220px] lg:min-h-full">
+                  <div className="lg:col-span-4 relative min-h-[200px] lg:min-h-full">
                     <Image
                       src={imgUrl}
                       alt={test.name}
@@ -74,39 +73,21 @@ export default function DiagnosisPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent flex items-end p-6">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center text-teal">
-                          <Icon className="w-6 h-6" />
+                        <div className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center text-teal">
+                          <Icon className="w-5 h-5" />
                         </div>
-                        <span className="text-white text-xs font-bold uppercase tracking-wider drop-shadow-md">
-                          {test.tagline}
+                        <span className="text-white text-xs font-bold uppercase tracking-wider">
+                          Diagnosis &amp; Investigations
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Content Right Column */}
-                  <div className="lg:col-span-8 p-8 sm:p-10 flex flex-col justify-between">
-                    <div>
-                      <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-3">{test.name}</h2>
-                      <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-6">
-                        {test.description}
-                      </p>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-gray-100 pt-6">
-                        <div className="p-4 rounded-xl bg-off-white">
-                          <p className="text-xs font-bold uppercase tracking-wider text-teal mb-1">
-                            Clinical Purpose
-                          </p>
-                          <p className="text-xs text-gray-600 leading-relaxed">{test.purpose}</p>
-                        </div>
-                        <div className="p-4 rounded-xl bg-off-white">
-                          <p className="text-xs font-bold uppercase tracking-wider text-navy mb-1">
-                            What Parents &amp; Children Can Expect
-                          </p>
-                          <p className="text-xs text-gray-600 leading-relaxed">{test.whatToExpect}</p>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="lg:col-span-8 p-8 sm:p-10">
+                    <h2 className="text-2xl font-bold text-navy mb-3">{test.name}</h2>
+                    <p className="text-gray-700 text-base leading-relaxed">
+                      {test.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -114,13 +95,19 @@ export default function DiagnosisPage() {
           })}
         </div>
 
-        {/* Back Link */}
-        <div className="pt-6">
+        {/* Navigation */}
+        <div className="pt-8 border-t border-gray-200 flex flex-wrap gap-4">
           <Link
-            href="/kidney-health"
-            className="inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-teal transition-colors"
+            href="/treatment"
+            className="inline-flex items-center gap-2 bg-teal text-white font-bold px-6 py-3 rounded-xl text-sm hover:brightness-110 transition-all"
           >
-            ← Back to Kidney Health Hub
+            Treatment Journey <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/kidney-health/diseases"
+            className="inline-flex items-center gap-2 border border-navy text-navy font-bold px-6 py-3 rounded-xl text-sm hover:bg-navy hover:text-white transition-all"
+          >
+            Kidney Diseases in Children
           </Link>
         </div>
       </div>

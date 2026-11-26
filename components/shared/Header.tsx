@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   HeartPulse,
@@ -66,8 +67,15 @@ export default function Header() {
             
             {/* Logo Area */}
             <Link href="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-navy rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
-                <HeartPulse className="text-white w-5 h-5 sm:w-6 sm:h-6" />
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden transition-transform group-hover:scale-105 shrink-0 bg-white">
+                <Image
+                  src="/logo.jpg"
+                  alt="Pediatric Kidney Foundation"
+                  fill
+                  sizes="48px"
+                  className="object-contain"
+                  priority
+                />
               </div>
               <div>
                 <span className="block text-navy font-extrabold text-lg sm:text-xl leading-none uppercase tracking-tighter">
@@ -283,15 +291,21 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center gap-2.5"
                 >
-                  <div className="w-8 h-8 bg-navy rounded-lg flex items-center justify-center">
-                    <HeartPulse className="text-white w-5 h-5" />
+                  <div className="relative w-9 h-9 rounded-lg overflow-hidden shrink-0 bg-white">
+                    <Image
+                      src="/logo.jpg"
+                      alt="Pediatric Kidney Foundation"
+                      fill
+                      sizes="36px"
+                      className="object-contain"
+                    />
                   </div>
                   <div>
                     <span className="block text-navy font-extrabold text-base leading-none uppercase tracking-tighter">
-                      PKF India
+                      PKF
                     </span>
                     <span className="block text-[8px] text-teal font-semibold uppercase tracking-wider">
-                      Pediatric Kidney Care
+                      Pediatric Kidney Foundation
                     </span>
                   </div>
                 </Link>

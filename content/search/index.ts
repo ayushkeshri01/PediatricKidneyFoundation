@@ -64,7 +64,7 @@ export function getSiteSearchIndex(): SearchResultItem[] {
     items.push({
       title: f.question,
       description: f.answer,
-      href: `/kidney-health#faqs`,
+      href: `/faq`,
       category: 'Frequently Asked Question'
     });
   });

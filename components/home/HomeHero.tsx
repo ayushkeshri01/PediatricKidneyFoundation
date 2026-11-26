@@ -39,28 +39,60 @@ export default function HomeHero() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-xl text-white/85 mb-8 max-w-2xl leading-relaxed font-light">
-              Dedicated to early detection, specialized pediatric nephrology care, medical education, and compassionate financial assistance for children facing kidney disease across India.
+            <p className="text-base sm:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed font-light">
+              Supporting Children with Kidney Diseases Through Awareness, Early Care, and Community Support.
             </p>
 
-            {/* Primary Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 mb-8">
               <Link
                 href="/contact?inquiry=help"
                 id="hero-cta-help-link"
-                className="bg-coral text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-center shadow-lg shadow-coral/25 hover:shadow-coral/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 group text-sm sm:text-base"
+                className="bg-coral text-white px-6 sm:px-7 py-3.5 rounded-xl font-bold text-center shadow-lg shadow-coral/25 hover:shadow-coral/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 group text-sm sm:text-base cursor-pointer"
               >
                 Get Help for Your Child
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/donate"
-                id="hero-cta-support-link"
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-center hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
+                id="hero-cta-donate-link"
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white px-6 sm:px-7 py-3.5 rounded-xl font-bold text-center hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer"
               >
-                <Heart className="w-5 h-5 text-coral fill-coral/30" />
-                Support Our Mission
+                <Heart className="w-4 h-4 text-coral fill-coral/30" />
+                Donate
               </Link>
+              <Link
+                href="/get-involved"
+                id="hero-cta-partner-link"
+                className="bg-teal text-white hover:brightness-110 px-6 sm:px-7 py-3.5 rounded-xl font-bold text-center hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer"
+              >
+                Partner With Us
+              </Link>
+            </div>
+
+            {/* Quick Help */}
+            <div className="pt-6 border-t border-white/15">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-teal-200 block mb-3">
+                Quick Help
+              </span>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/contact?inquiry=doctor"
+                  id="quick-help-doctor"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/15 rounded-lg text-xs font-semibold text-white border border-white/15 transition-all"
+                >
+                  <Stethoscope className="w-3.5 h-3.5 text-teal" />
+                  Find a Pediatric Nephrologist
+                </Link>
+                <Link
+                  href="/support"
+                  id="quick-help-parent-groups"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/15 rounded-lg text-xs font-semibold text-white border border-white/15 transition-all"
+                >
+                  <Users className="w-3.5 h-3.5 text-coral" />
+                  Parent Support Groups
+                </Link>
+              </div>
             </div>
 
             {/* Trust Markers Bar */}

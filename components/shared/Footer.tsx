@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { HeartPulse, MapPin, Phone, Mail, Clock, MessageSquare, ExternalLink, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
+import { MapPin, Phone, Mail, Clock, MessageSquare, ExternalLink, CheckCircle2 } from 'lucide-react';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -23,14 +24,23 @@ export default function Footer() {
           {/* 1. Brand & Social Media Column */}
           <div className="reveal active">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-white/10 rounded flex items-center justify-center">
-                <HeartPulse className="text-white w-6 h-6" />
+              <div className="relative w-12 h-12 bg-white rounded-lg overflow-hidden shrink-0">
+                <Image
+                  src="/logo.jpg"
+                  alt="Pediatric Kidney Foundation"
+                  fill
+                  sizes="48px"
+                  className="object-contain"
+                />
               </div>
-              <span className="font-bold text-xl tracking-tight">PKF</span>
+              <div>
+                <span className="font-bold text-xl tracking-tight block text-white">PKF</span>
+                <span className="text-[10px] text-teal block uppercase tracking-wider font-semibold">Pediatric Kidney Foundation</span>
+              </div>
             </div>
             
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              A registered nonprofit dedicated to pediatric kidney health since 2004. Saving lives through specialized care and research.
+              Supporting Children with Kidney Diseases Through Awareness, Early Care, and Community Support.
             </p>
 
             {/* Follow Us / Social Media */}

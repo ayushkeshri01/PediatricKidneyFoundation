@@ -1,50 +1,21 @@
 export const nutritionData = {
-  title: 'Nutrition & Lifestyle for Young Kidneys',
-  subtitle: 'Simple everyday habits, mindful hydration, and wholesome nutrition provide the foundation for lifelong kidney health.',
+  title: 'Nutrition & Lifestyle',
+  intro: "Good nutrition and healthy daily habits play an important role in keeping your child's kidneys healthy.",
   healthyEatingTips: [
-    {
-      title: 'Balanced Fresh Diet',
-      description: 'Provide fresh fruits, vegetables, whole grains, and healthy proteins. Emphasize home-cooked meals prepared with care.',
-      icon: 'apple'
-    },
-    {
-      title: 'Mindful Hydration',
-      description: 'Encourage children to drink adequate clean water throughout the day, unless specifically directed to restrict fluids by a pediatric nephrologist.',
-      icon: 'droplet'
-    },
-    {
-      title: 'Limit Processed Salt',
-      description: 'Avoid excessive sodium from chips, packaged snacks, instant noodles, commercial pickles, and fast food. Choose herbs and lemon for flavoring.',
-      icon: 'shield-alert'
-    },
-    {
-      title: 'Avoid Sugary Drinks',
-      description: 'Replace carbonated sodas and packaged sugary syrups with water, buttermilk, coconut water, or fresh homemade fruit infusions.',
-      icon: 'coffee'
-    },
-    {
-      title: 'Safe Medication Use',
-      description: 'Never administer over-the-counter pain syrups (such as NSAIDs) or unverified herbal powders without consulting your child’s pediatrician.',
-      icon: 'pill'
-    }
+    'Provide a balanced diet with plenty of fresh fruits and vegetables, whole grains, and healthy proteins.',
+    'Encourage your child to drink enough water, unless the doctor has advised a fluid restriction.',
+    'Limit foods that are high in salt, such as chips, packaged snacks, instant noodles, pickles, and processed foods.',
+    'Avoid sugary drinks and encourage water, milk, or fresh homemade drinks instead.',
+    'Give fresh, home-cooked meals whenever possible.',
+    'Do not give medicines, herbal products, or supplements without consulting your doctor.'
   ],
-  lifestyleHabits: [
-    {
-      title: '60 Minutes of Daily Active Play',
-      description: 'Encourage outdoor sports, running, cycling, or active play daily to support cardiovascular fitness and metabolic health.'
-    },
-    {
-      title: 'Age-Appropriate Restorative Sleep',
-      description: 'Ensure adequate nightly sleep (9–11 hours for school children) to allow physical growth, immune recovery, and blood pressure regulation.'
-    },
-    {
-      title: 'Good Bathroom & Hand Hygiene',
-      description: 'Teach children never to hold urine for extended hours, wipe from front-to-back for girls, and wash hands thoroughly to prevent infections.'
-    },
-    {
-      title: 'Early Clinical Attention',
-      description: 'Never ignore persistent fever, puffiness around the eyes, red urine, or burning during urination. Early medical attention prevents complications.'
-    }
+  healthyLifestyleHabits: [
+    'Encourage at least one hour of physical activity or outdoor play every day.',
+    'Ensure your child gets enough sleep according to their age.',
+    'Teach good hand hygiene to help prevent infections.',
+    'Do not ignore fever, burning during urination, blood in the urine, or swelling. Seek medical advice early.',
+    'Keep regular follow-up appointments if your child has a kidney condition.'
   ],
-  specialDietNote: 'Important Notice for Children with Kidney Disease: Children diagnosed with Nephrotic Syndrome or Chronic Kidney Disease may require tailored dietary plans with specific restrictions on sodium, fluids, potassium, or phosphorus. Because nutritional needs vary greatly by child and stage of disease, always adhere strictly to the customized plan provided by your pediatric nephrologist and renal dietitian.'
+  forChildrenWithKidneyDisease: "Children with kidney disease may need special diets or limits on salt, fluids, potassium, or phosphorus. These changes are different for every child. Always follow the diet plan and medicines prescribed by your child's healthcare team. Never make major changes to your child's diet without medical advice.",
+  aHealthyFutureStartsEarly: "Simple healthy habits, regular medical check-ups, and timely treatment can go a long way in protecting your child's kidneys. With the right care and support, many children with kidney disease can grow, learn, and lead active, fulfilling lives."
 };

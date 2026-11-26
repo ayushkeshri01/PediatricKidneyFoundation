@@ -4,41 +4,41 @@ export const treatmentData: TreatmentItem[] = [
   {
     id: 'dialysis',
     slug: 'dialysis',
-    name: 'Pediatric Dialysis',
-    tagline: 'Life-Sustaining Filtration When Kidneys Rest or Recover',
-    description: 'Dialysis is a medical treatment that performs the vital filtering functions of the kidneys when they are temporarily or permanently unable to function adequately. It cleans the bloodstream of toxic metabolic wastes, balances electrolytes, and removes excess fluids.',
-    whenNeeded: 'A child may need dialysis when the kidneys are not able to work well enough to keep the body healthy. This may happen because of severe acute kidney injury (often reversible) or advanced stage 5 chronic kidney disease while awaiting a transplant.',
+    name: 'Dialysis',
+    tagline: 'Treatment Journey',
+    description: 'Dialysis is a treatment that helps do the work of the kidneys when they are no longer able to function properly. Healthy kidneys remove waste, extra water, and harmful substances from the blood. When the kidneys stop working, these waste products build up in the body. Dialysis helps remove them and keeps the body healthy.',
+    whenNeeded: "A child may need dialysis when the kidneys are not able to work well enough to keep the body healthy. This may happen because of severe kidney injury or advanced chronic kidney disease. Your child's doctor will decide if and when dialysis is needed.",
     typesOrOptions: [
       {
         title: 'Peritoneal Dialysis (PD)',
-        description: 'In peritoneal dialysis, a sterile dialysis solution is instilled into the abdomen through a soft, flexible catheter. The natural lining of the abdominal cavity (peritoneum) acts as a gentle, continuous filter. Can often be conducted safely at home during nighttime sleep (Automated PD), allowing children to attend school uninterrupted.'
+        description: 'In this type of dialysis, a special fluid is put into the abdomen through a soft tube. The lining of the abdomen acts as a natural filter to remove waste and extra fluid. This treatment can often be done at home after proper training.'
       },
       {
         title: 'Hemodialysis (HD)',
-        description: 'In hemodialysis, the child’s blood is gently routed through an external artificial dialyzer machine that cleans waste and excess water before returning purified blood. Typically performed 3 times per week in a dedicated pediatric dialysis unit with specialized pediatric nursing and nephrology oversight.'
+        description: 'In hemodialysis, blood is passed through a dialysis machine that removes waste and extra fluid before returning the cleaned blood to the body. This treatment is usually done in a hospital or dialysis centre several times a week.'
       }
     ],
-    lifeWithTreatment: 'With coordinated medical care, nutritional guidance, and family support, many children on dialysis continue to attend school, play with friends, and participate in family activities with optimism and vitality.',
+    lifeWithTreatment: 'With the right treatment, a healthy diet, regular medicines, and follow-up care, many children on dialysis can continue to attend school, play, and enjoy daily activities. Support from family and healthcare providers is an important part of their care.',
     iconName: 'refresh-cw'
   },
   {
     id: 'transplant',
     slug: 'transplant',
-    name: 'Pediatric Kidney Transplantation',
-    tagline: 'The Gold Standard for Long-Term Pediatric Health & Growth',
-    description: 'A kidney transplant is a surgical procedure where a healthy donor kidney is placed into the body of a child whose native kidneys have failed. For children with advanced kidney disease, transplantation offers the highest quality of life and supports normal childhood growth.',
-    whenNeeded: 'Recommended for children with irreversible end-stage kidney disease (Stage 5 CKD). Before surgery, the child and donor undergo thorough immunological matching, cardiovascular screening, and multidisciplinary preparation.',
+    name: 'Kidney Transplant',
+    tagline: 'Treatment Journey',
+    description: 'A kidney transplant is a surgery in which a healthy kidney from a donor is placed into the body of a child whose kidneys are no longer working properly. For many children with advanced kidney disease, a kidney transplant offers the best chance of leading a healthy and active life.',
+    whenNeeded: 'A kidney transplant may be recommended for children whose kidneys have permanently stopped working due to advanced chronic kidney disease. Before a transplant, the child undergoes a detailed medical evaluation to make sure they are ready for the procedure.',
     typesOrOptions: [
       {
-        title: 'Living Related Donor',
-        description: 'A healthy parent, grandparent, or close relative with compatible blood group and tissue typing donates one kidney. Living donations often provide optimal long-term graft survival.'
+        title: 'Living Donor',
+        description: 'A living donor, such as a parent or a close relative who is healthy and a suitable match.'
       },
       {
-        title: 'Deceased (Cadaveric) Donor',
-        description: 'A kidney donated by a family after brain death through regulated organ sharing registries (e.g., NOTTO in India).'
+        title: 'Deceased Donor',
+        description: 'A deceased donor, whose family has agreed to donate organs after death. The doctor will determine the most suitable donor after careful testing.'
       }
     ],
-    lifeWithTreatment: 'After recovery, the new kidney filters blood naturally. Children take daily immunosuppressant medicines to prevent organ rejection. With regular follow-up and good hydration, transplanted children can play sports, excel in education, and experience vibrant childhood development.',
+    lifeWithTreatment: 'Yes. Many children who receive a kidney transplant can return to school, play with friends, and enjoy a good quality of life. With regular medicines, healthy eating, and routine medical check-ups, most children can grow and develop well.',
     iconName: 'heart'
   }
 ];
