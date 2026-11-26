@@ -6,6 +6,11 @@ import StoriesSection from '@/components/home/StoriesSection';
 import LatestInitiativesSection from '@/components/home/LatestInitiativesSection';
 import PartnersSection from '@/components/home/PartnersSection';
 
+export const metadata = {
+  title: 'Pediatric Kidney Foundation | Saving Young Kidneys, Securing Young Lives',
+  description: 'Supporting Children with Kidney Diseases Through Awareness, Early Care, and Community Support.'
+};
+
 export default function HomePage() {
   return (
     <>

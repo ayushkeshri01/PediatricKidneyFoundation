@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 import { diseasesData } from '@/content/diseases';
 

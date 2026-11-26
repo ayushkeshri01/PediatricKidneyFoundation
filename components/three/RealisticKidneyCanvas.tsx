@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Rotate3d, Play, Pause, ZoomIn, ZoomOut, RotateCcw, Eye, Compass } from 'lucide-react';
+import { Play, Pause, ZoomIn, ZoomOut, RotateCcw, Eye, Compass } from 'lucide-react';
 
 interface RealisticKidneyCanvasProps {
   className?: string;
@@ -62,7 +62,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
     controls.enableZoom = true;
     controls.minDistance = 22;
     controls.maxDistance = 75;
-    controls.autoRotate = !prefersReducedMotion && isAutoRotating;
+    controls.autoRotate = !prefersReducedMotion;
     controls.autoRotateSpeed = 0.9;
     controls.target.set(0, -0.5, 0);
 
@@ -479,8 +479,8 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
     scene.add(particlesMesh);
 
     // TARGET CAMERA POSITIONS (Proportional, comfortable distance)
-    let targetCameraPos = new THREE.Vector3(0, 0.5, 48);
-    let targetLookAt = new THREE.Vector3(0, -0.5, 0);
+    const targetCameraPos = new THREE.Vector3(0, 0.5, 48);
+    const targetLookAt = new THREE.Vector3(0, -0.5, 0);
 
     // ATTACH SCENE CONTROL API FOR REACT STATE
     sceneControlRef.current = {
@@ -655,6 +655,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
         {/* Model Mode Switcher: Pair vs Single */}
         <div className="flex items-center bg-navy/80 backdrop-blur-md border border-white/20 p-1 rounded-xl shadow-lg">
           <button
+            type="button"
             onClick={() => handleModeChange('pair')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'pair'
@@ -665,6 +666,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
             Bilateral Pair
           </button>
           <button
+            type="button"
             onClick={() => handleModeChange('single')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'single'
@@ -680,6 +682,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
         <div className="hidden lg:flex items-center gap-1.5 bg-navy/80 backdrop-blur-md border border-white/20 p-1 rounded-xl shadow-lg text-xs text-white">
           <span className="text-[10px] text-white/50 uppercase px-2 font-bold">Angle:</span>
           <button
+            type="button"
             onClick={() => handlePresetChange('front')}
             className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
               activePreset === 'front' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white'
@@ -688,6 +691,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
             Front
           </button>
           <button
+            type="button"
             onClick={() => handlePresetChange('back')}
             className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
               activePreset === 'back' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white'
@@ -696,6 +700,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
             Back
           </button>
           <button
+            type="button"
             onClick={() => handlePresetChange('hilum')}
             className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
               activePreset === 'hilum' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white'
@@ -709,6 +714,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
         <div className="flex items-center gap-1.5 bg-navy/80 backdrop-blur-md border border-white/20 p-1 rounded-xl shadow-lg">
           {/* Auto Rotate Toggle */}
           <button
+            type="button"
             onClick={handleToggleAutoRotate}
             title={isAutoRotating ? 'Pause 360° Rotation' : 'Start 360° Rotation'}
             className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center gap-1.5 text-xs px-2.5"
@@ -719,6 +725,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
 
           {/* Toggle Labels */}
           <button
+            type="button"
             onClick={() => setShowLabels(!showLabels)}
             title="Toggle Anatomy Callouts"
             className={`p-1.5 rounded-lg transition-colors cursor-pointer hidden sm:block ${
@@ -730,6 +737,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
 
           {/* Zoom In */}
           <button
+            type="button"
             onClick={() => sceneControlRef.current?.zoom(1)}
             title="Zoom In"
             className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
@@ -739,6 +747,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
 
           {/* Zoom Out */}
           <button
+            type="button"
             onClick={() => sceneControlRef.current?.zoom(-1)}
             title="Zoom Out"
             className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
@@ -748,6 +757,7 @@ export default function RealisticKidneyCanvas({ className }: RealisticKidneyCanv
 
           {/* Reset Camera */}
           <button
+            type="button"
             onClick={() => {
               setActivePreset('front');
               sceneControlRef.current?.resetView();

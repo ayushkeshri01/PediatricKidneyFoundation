@@ -23,7 +23,14 @@ export const foundationData = {
     address: 'E-11, South Extension-1, New Delhi-110049',
     phone: '+91 11 2469 8888',
     email: 'contact@pediatrickidneyfoundation.org',
-    officeHours: 'Monday – Friday: 9:00 AM – 5:00 PM, Saturday: 9:00 AM – 1:00 PM'
+    officeHours: 'Monday - Friday: 9:00 AM - 5:00 PM, Saturday: 9:00 AM - 1:00 PM',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pediatric+Kidney+Foundation+E-11+South+Extension-1+New+Delhi+110049',
+    social: {
+      facebook: '',
+      twitter: '',
+      instagram: '',
+      linkedin: ''
+    }
   }
 };
 

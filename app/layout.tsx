@@ -51,9 +51,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable} h-full`}>
       <body className="min-h-screen flex flex-col antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-teal focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold">
+          Skip to main content
+        </a>
         <ScrollObserver />
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main id="main-content" className="flex-grow" tabIndex={-1}>{children}</main>
         <Footer />
       </body>
     </html>

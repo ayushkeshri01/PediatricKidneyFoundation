@@ -15,8 +15,9 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
   return (
     <div className="border border-gray-200 rounded-xl overflow-hidden mb-3 bg-white transition-all hover:border-teal/40">
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 text-left flex justify-between items-center gap-4 bg-white hover:bg-gray-50/80 transition-colors"
+        className="w-full px-6 py-4 text-left flex justify-between items-center gap-4 bg-white hover:bg-gray-50/80 transition-colors cursor-pointer"
         aria-expanded={isOpen}
       >
         <span className="font-bold text-navy text-base sm:text-lg">{title}</span>

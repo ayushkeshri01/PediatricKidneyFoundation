@@ -7,13 +7,13 @@ export default function StoriesSection() {
   return (
     <section className="py-20 bg-warm-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal">
           <h2 className="text-3xl sm:text-4xl font-bold text-navy">
             Stories &amp; Testimonials
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-md grid grid-cols-1 md:grid-cols-12 items-center">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-md grid grid-cols-1 md:grid-cols-12 items-center reveal">
           <div className="md:col-span-5 relative h-72 sm:h-80 md:h-full min-h-[260px] w-full">
             <Image
               src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800"

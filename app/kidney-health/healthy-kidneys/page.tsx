@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, CheckCircle2, Droplets, Filter, HeartPulse, ShieldCheck, Activity, Gauge } from 'lucide-react';
+import { ArrowRight, Droplets, Filter, HeartPulse, ShieldCheck, Activity, Gauge } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 
 export const metadata = {

@@ -46,7 +46,7 @@ export default function PartnersSection() {
   return (
     <section className="py-20 bg-gray-50 border-t border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal">
           <h2 className="text-3xl font-bold text-navy">
             Our Partners
           </h2>
@@ -72,17 +72,17 @@ export default function PartnersSection() {
                 <a
                   key={idx}
                   href={item.href}
-                  className="group bg-white p-8 rounded-2xl shadow-xs border border-gray-100 flex flex-col items-center text-center hover:shadow-md hover:border-teal/30 transition-all cursor-pointer"
+                  className="group bg-white p-8 rounded-2xl shadow-xs border border-gray-100 flex flex-col items-center text-center hover:shadow-md hover:border-teal/30 transition-all cursor-pointer stagger-item"
                 >
                   {content}
                 </a>
               );
             }
 
-            return (
+              return (
               <div
                 key={idx}
-                className="bg-white p-8 rounded-2xl shadow-xs border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all"
+                className="bg-white p-8 rounded-2xl shadow-xs border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-all stagger-item"
               >
                 {content}
               </div>
@@ -91,7 +91,7 @@ export default function PartnersSection() {
         </div>
 
         {/* Hospital Logos Section */}
-        <div id="hospitals" className="bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xs">
+        <div id="hospitals" className="bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xs reveal">
           <div className="flex items-center gap-3 pb-6 mb-8 border-b border-gray-100">
             <div className="w-10 h-10 rounded-xl bg-teal/10 flex items-center justify-center text-teal">
               <Hospital className="w-5 h-5" />
@@ -107,7 +107,7 @@ export default function PartnersSection() {
             {hospitalPartners.map((hospital, idx) => (
               <div
                 key={idx}
-                className="group p-5 bg-off-white hover:bg-white rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-md transition-all flex items-center justify-center"
+                className="group p-5 bg-off-white hover:bg-white rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-md transition-all flex items-center justify-center stagger-item"
               >
                 <div className="relative w-full h-16 flex items-center justify-center p-2 bg-white rounded-xl border border-gray-100 group-hover:border-teal/20 transition-all">
                   <Image

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -12,9 +12,6 @@ import {
   Phone,
   ArrowRight,
   Heart,
-  BookOpen,
-  HelpCircle,
-  Clock,
   MapPin
 } from 'lucide-react';
 import SearchModal from './SearchModal';
@@ -26,37 +23,47 @@ export default function Header() {
   const [isKidneyDropdownOpen, setIsKidneyDropdownOpen] = useState(false);
   const [isMobileKidneyOpen, setIsMobileKidneyOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Close mobile drawer when route changes
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setIsMobileMenuOpen(false);
     setIsMobileKidneyOpen(false);
     setIsMobileAboutOpen(false);
-  }, [pathname]);
+  }
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll and manage focus for mobile menu
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMobileMenuOpen]);
+    if (!isMobileMenuOpen) return;
+    const prev = document.activeElement as HTMLElement | null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const t = setTimeout(() => {
+      const first = mobileMenuRef.current?.querySelector<HTMLElement>('a[href], button:not([disabled])');
+      first?.focus();
+    }, 0);
 
-  // Close on Escape key
-  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsMobileMenuOpen(false);
-        setIsSearchOpen(false);
+      if (e.key === 'Escape') { e.preventDefault(); setIsMobileMenuOpen(false); menuButtonRef.current?.focus(); return; }
+      if (e.key === 'Tab' && mobileMenuRef.current) {
+        const focusables = mobileMenuRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = prevOverflow;
+      prev?.focus();
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -255,6 +262,7 @@ export default function Header() {
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Search Button */}
               <button
+                type="button"
                 onClick={() => setIsSearchOpen(true)}
                 className="p-2 sm:p-2.5 text-gray-500 hover:text-navy transition-colors rounded-xl hover:bg-gray-100 cursor-pointer"
                 aria-label="Search website"
@@ -275,9 +283,13 @@ export default function Header() {
 
               {/* Hamburger Button for Mobile */}
               <button
+                type="button"
+                ref={menuButtonRef}
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="lg:hidden p-2 sm:p-2.5 rounded-xl text-gray-700 hover:text-navy hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-teal/30 cursor-pointer"
                 aria-label="Open mobile navigation menu"
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation-drawer"
               >
                 <Menu className="w-6 h-6" />
               </button>
@@ -288,15 +300,16 @@ export default function Header() {
 
       {/* Mobile Drawer (100% responsive) */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
+        <div className="fixed inset-0 z-50 lg:hidden" role="presentation">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileMenuOpen(false)} />
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-
-          {/* Drawer Menu */}
-          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col z-50 overflow-y-auto">
+            id="mobile-navigation-drawer"
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation menu"
+            className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col z-50 overflow-y-auto"
+          >
             {/* Header inside drawer */}
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-off-white">
               <Link
@@ -324,7 +337,8 @@ export default function Header() {
               </Link>
 
               <button
-                onClick={() => setIsMobileMenuOpen(false)}
+                type="button"
+                onClick={() => { setIsMobileMenuOpen(false); menuButtonRef.current?.focus(); }}
                 className="p-2 text-gray-500 hover:text-navy hover:bg-gray-200/60 rounded-xl transition-colors cursor-pointer"
                 aria-label="Close navigation menu"
               >
@@ -349,6 +363,7 @@ export default function Header() {
               {/* About PKF */}
               <div>
                 <button
+                  type="button"
                   onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
                   className={`w-full flex items-center justify-between p-3 rounded-xl transition-colors text-left ${
                     pathname?.startsWith('/about')
@@ -369,16 +384,18 @@ export default function Header() {
                     <Link
                       href="/about"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg font-bold text-navy hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg font-bold text-navy hover:text-teal hover:bg-white"
                     >
-                      • About PKF
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      About PKF
                     </Link>
                     <Link
                       href="/about/leadership"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
                     >
-                      • Leadership
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Leadership
                     </Link>
                   </div>
                 )}
@@ -387,6 +404,7 @@ export default function Header() {
               {/* Collapsible Kidney Health Accordion */}
               <div>
                 <button
+                  type="button"
                   onClick={() => setIsMobileKidneyOpen(!isMobileKidneyOpen)}
                   className={`w-full flex items-center justify-between p-3 rounded-xl transition-colors text-left ${
                     pathname?.startsWith('/kidney-health') || pathname?.startsWith('/treatment')
@@ -407,58 +425,66 @@ export default function Header() {
                     <Link
                       href="/kidney-health"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg font-bold text-navy hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg font-bold text-navy hover:text-teal hover:bg-white"
                     >
-                      • Kidney Health Hub
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Kidney Health Hub
                     </Link>
                     <Link
                       href="/kidney-health/healthy-kidneys"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
                     >
-                      • Understanding Healthy Kidneys
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Understanding Healthy Kidneys
                     </Link>
                     <Link
                       href="/kidney-health/symptoms"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
                     >
-                      • Common Symptoms of Unhealthy kidneys
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Common Symptoms of Unhealthy kidneys
                     </Link>
                     <Link
                       href="/kidney-health/diseases"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
                     >
-                      • Kidney Diseases in Children
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Kidney Diseases in Children
                     </Link>
                     <Link
                       href="/kidney-health/diagnosis"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
                     >
-                      • Diagnosis &amp; Investigations
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Diagnosis &amp; Investigations
                     </Link>
                     <Link
                       href="/treatment"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
                     >
-                      • Treatment Journey
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Treatment Journey
                     </Link>
                     <Link
                       href="/kidney-health/nutrition"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg text-gray-600 hover:text-teal hover:bg-white"
                     >
-                      • Nutrition &amp; Lifestyle
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Nutrition &amp; Lifestyle
                     </Link>
                     <Link
                       href="/faq"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-3 rounded-lg font-bold text-teal hover:bg-white"
+                      className="flex items-center py-2 px-3 rounded-lg font-bold text-teal hover:bg-white"
                     >
-                      • Frequently Asked Questions
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal mr-2.5 shrink-0" />
+                      Frequently Asked Questions
                     </Link>
                   </div>
                 )}
@@ -552,3 +578,5 @@ export default function Header() {
     </>
   );
 }
+
+

@@ -16,7 +16,7 @@ export default function HomeHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Hero Content */}
-          <div className="lg:col-span-7 text-white">
+          <div className="lg:col-span-7 text-white reveal active">
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
               Saving Young Kidneys, <br />
@@ -84,7 +84,7 @@ export default function HomeHero() {
           </div>
 
           {/* Right Column: Relevant Pediatric Care Photo with Official Logo Badge */}
-          <div className="lg:col-span-5 relative">
+          <div className="lg:col-span-5 relative reveal active">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-navy/60">
                 <div className="relative h-[420px] sm:h-[460px] w-full">

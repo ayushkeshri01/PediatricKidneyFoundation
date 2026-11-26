@@ -9,7 +9,6 @@ import {
   Pill,
   ShieldCheck,
   ArrowLeft,
-  Calendar,
   HelpCircle,
   CheckCircle2,
   PhoneCall

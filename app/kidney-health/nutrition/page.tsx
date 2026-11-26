@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Apple, Activity, AlertCircle, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Apple, Activity, ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 import { nutritionData } from '@/content/nutrition';
 

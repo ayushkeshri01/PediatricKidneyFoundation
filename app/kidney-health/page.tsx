@@ -2,18 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  HeartPulse,
   Activity,
   ArrowRight,
-  HelpCircle,
-  AlertTriangle,
-  Stethoscope,
-  Apple,
   RefreshCw,
   Heart,
   Droplets,
-  Scan,
-  Microscope,
   Eye,
   TrendingDown,
   Thermometer,
@@ -53,7 +46,7 @@ export default function KidneyHealthPage() {
       {/* Hero Header */}
       <section className="bg-navy text-white py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <Breadcrumbs items={[{ label: 'Kidney Health Hub' }]} />
+          <Breadcrumbs variant="dark" items={[{ label: 'Kidney Health Hub' }]} />
           <div className="max-w-3xl mt-4">
             <span className="text-xs font-bold uppercase tracking-widest text-coral block mb-2">
               Education &amp; Care

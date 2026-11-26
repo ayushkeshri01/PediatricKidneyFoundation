@@ -3,17 +3,40 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, Phone, Mail, Clock, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ExternalLink, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { foundationData } from '@/content/foundation';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
+  const [website, setWebsite] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes('@')) return;
-    setIsSubscribed(true);
-    setEmail('');
+    setError('');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, website })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Unable to subscribe right now.');
+      setIsSubscribed(true);
+      setEmail('');
+      setWebsite('');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to subscribe right now.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -48,52 +71,24 @@ export default function Footer() {
               <p className="text-xs font-bold text-white/90 uppercase tracking-widest mb-3">
                 Follow Us
               </p>
-              <div className="flex gap-4">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="social-fb-link"
-                  className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold"
-                  aria-label="Facebook"
-                  title="Facebook"
-                >
-                  f
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="social-tw-link"
-                  className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold"
-                  aria-label="Twitter / X"
-                  title="Twitter / X"
-                >
-                  𝕏
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="social-ig-link"
-                  className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold"
-                  aria-label="Instagram"
-                  title="Instagram"
-                >
-                  ig
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="social-li-link"
-                  className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold"
-                  aria-label="LinkedIn"
-                  title="LinkedIn"
-                >
-                  in
-                </a>
-              </div>
+              {Object.values(foundationData.contact.social).some(Boolean) ? (
+                <div className="flex gap-4">
+                  {foundationData.contact.social.facebook && (
+                    <a href={foundationData.contact.social.facebook} target="_blank" rel="noopener noreferrer" id="social-fb-link" className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold" aria-label="Facebook" title="Facebook">f</a>
+                  )}
+                  {foundationData.contact.social.twitter && (
+                    <a href={foundationData.contact.social.twitter} target="_blank" rel="noopener noreferrer" id="social-tw-link" className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold" aria-label="Twitter / X" title="Twitter / X">X</a>
+                  )}
+                  {foundationData.contact.social.instagram && (
+                    <a href={foundationData.contact.social.instagram} target="_blank" rel="noopener noreferrer" id="social-ig-link" className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold" aria-label="Instagram" title="Instagram">ig</a>
+                  )}
+                  {foundationData.contact.social.linkedin && (
+                    <a href={foundationData.contact.social.linkedin} target="_blank" rel="noopener noreferrer" id="social-li-link" className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-teal hover:text-white transition-all text-xs font-bold" aria-label="LinkedIn" title="LinkedIn">in</a>
+                  )}
+                </div>
+              ) : (
+                <p className="text-xs text-gray-400">Official social profiles coming soon.</p>
+              )}
             </div>
 
             {/* Office Hours */}
@@ -101,8 +96,8 @@ export default function Footer() {
               <p className="font-bold text-white/90 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-teal" /> Office Hours
               </p>
-              <p>Monday – Friday: 9:00 AM – 5:00 PM</p>
-              <p>Saturday: 9:00 AM – 1:00 PM</p>
+              <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+              <p>Saturday: 9:00 AM - 1:00 PM</p>
             </div>
           </div>
 
@@ -160,27 +155,21 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="text-teal shrink-0 mt-1 w-4 h-4" />
                 <div>
-                  <span>Pediatric Kidney Foundation<br />E-11, South Extension-1,<br />New Delhi-110049</span>
+                  <span>{foundationData.contact.name}<br />E-11, South Extension-1,<br />New Delhi-110049</span>
                   <div className="mt-2">
-                    <a
-                      href="https://maps.google.com/?q=South+Extension-1+New+Delhi"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      id="footer-google-map-link"
-                      className="text-teal hover:underline text-xs font-semibold inline-flex items-center gap-1"
-                    >
-                      Google Map <ExternalLink className="w-3 h-3" />
+                    <a href={foundationData.contact.mapUrl} target="_blank" rel="noopener noreferrer" id="footer-google-map-link" className="text-teal hover:underline text-xs font-semibold inline-flex items-center gap-1">
+                      Google Map <ExternalLink className="w-3 h-3" aria-hidden="true" />
                     </a>
                   </div>
                 </div>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-teal shrink-0 w-4 h-4" />
-                <span>+91 11 2469 8888</span>
+                <a href={`tel:${foundationData.contact.phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">{foundationData.contact.phone}</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-teal shrink-0 w-4 h-4" />
-                <span>contact@pediatrickidneyfoundation.org</span>
+                <a href={`mailto:${foundationData.contact.email}`} className="hover:text-white transition-colors break-all">{foundationData.contact.email}</a>
               </li>
             </ul>
           </div>
@@ -192,28 +181,36 @@ export default function Footer() {
               Supporting Children with Kidney Diseases Through Awareness, Early Care, and Community Support.
             </p>
             {isSubscribed ? (
-              <div className="bg-teal/20 border border-teal/40 rounded-xl p-4 flex items-center gap-2 text-teal text-xs font-semibold">
+              <div className="bg-teal/20 border border-teal/40 rounded-xl p-4 flex items-center gap-2 text-teal text-xs font-semibold" role="status" aria-live="polite">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
-                <span>Thank you for subscribing!</span>
+                <span>Thank you for subscribing.</span>
               </div>
             ) : (
-              <form id="newsletter-form" onSubmit={handleSubscribe} className="flex flex-col gap-3">
+              <form id="newsletter-form" onSubmit={handleSubscribe} className="flex flex-col gap-3" noValidate>
+                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
                 <input
                   type="email"
                   id="newsletter-email"
-                  placeholder="Email"
+                  placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  autoComplete="email"
                   className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal text-white placeholder-gray-500"
                 />
+                <input type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} className="hidden" aria-hidden="true" />
+                {error && (
+                  <p className="text-xs text-coral flex items-center gap-1.5" role="alert"><AlertCircle className="w-3.5 h-3.5" />{error}</p>
+                )}
                 <button
                   type="submit"
                   id="newsletter-submit-btn"
-                  className="bg-teal text-white font-bold py-3 rounded-xl text-sm hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+                  disabled={isSubmitting}
+                  className="bg-teal text-white font-bold py-3 rounded-xl text-sm hover:brightness-110 active:scale-95 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
                 >
-                  Newsletter
+                  {isSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Subscribing...</> : 'Subscribe'}
                 </button>
+                <p className="text-[11px] text-gray-400">We respect your privacy. Unsubscribe anytime.</p>
               </form>
             )}
           </div>
@@ -225,18 +222,10 @@ export default function Footer() {
             Pediatric Kidney Foundation
           </p>
           <div className="flex flex-wrap gap-6 text-xs">
-            <Link href="/contact" className="hover:text-white transition-colors">
-              Annual Reports
-            </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
-              Terms
-            </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
-              Social Media
-            </Link>
+            <Link href="/annual-reports" className="hover:text-white transition-colors">Annual Reports</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Use</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function AboutPKFSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Text Content */}
-          <div className="lg:w-1/2 space-y-8">
+          <div className="lg:w-1/2 space-y-8 reveal">
             <div>
               <h2 className="text-3xl sm:text-4xl text-navy font-bold mb-4 leading-tight">
                 About PKF
@@ -51,7 +51,7 @@ export default function AboutPKFSection() {
           </div>
 
           {/* Visual Presentation */}
-          <div className="lg:w-1/2 relative">
+          <div className="lg:w-1/2 relative reveal">
             <div className="relative z-10 p-4 bg-white shadow-xl rounded-2xl border border-gray-100">
               <div className="relative h-80 sm:h-96 w-full overflow-hidden rounded-xl">
                 <Image

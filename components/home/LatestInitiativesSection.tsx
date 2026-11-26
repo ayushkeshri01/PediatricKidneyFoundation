@@ -34,7 +34,7 @@ export default function LatestInitiativesSection() {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal">
           <h2 className="text-3xl font-bold text-navy">
             Latest Initiatives
           </h2>
@@ -47,7 +47,7 @@ export default function LatestInitiativesSection() {
               <Link
                 key={idx}
                 href={item.href}
-                className="group bg-off-white rounded-2xl overflow-hidden border border-gray-100 hover:border-teal/30 hover:shadow-xl transition-all flex flex-col justify-between"
+                className="group bg-off-white rounded-2xl overflow-hidden border border-gray-100 hover:border-teal/30 hover:shadow-xl transition-all flex flex-col justify-between stagger-item"
               >
                 <div>
                   <div className="relative h-44 w-full overflow-hidden">
