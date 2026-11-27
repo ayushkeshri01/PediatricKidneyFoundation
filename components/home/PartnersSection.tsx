@@ -44,9 +44,9 @@ export default function PartnersSection() {
   ];
 
   return (
-    <section className="py-20 bg-gray-50 border-t border-b border-gray-100">
+    <section className="py-24 bg-gray-50 border-t border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 reveal">
+        <div className="text-center mb-12 reveal-scale">
           <h2 className="text-3xl font-bold text-navy">
             Our Partners
           </h2>

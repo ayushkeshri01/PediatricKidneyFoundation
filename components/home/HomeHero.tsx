@@ -18,20 +18,20 @@ export default function HomeHero() {
           {/* Left Column: Hero Content */}
           <div className="lg:col-span-7 text-white reveal active">
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+            <h1 className="animate-hero-title text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
               Saving Young Kidneys, <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-turquoise to-white">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sand via-turquoise to-white">
                 Securing Young Lives
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed font-light">
+            <p className="animate-hero-text text-base sm:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed font-light">
               Supporting Children with Kidney Diseases Through Awareness, Early Care, and Community Support.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 mb-10">
+            <div className="animate-hero-cta flex flex-col sm:flex-row flex-wrap gap-3.5 mb-10">
               <Link
                 href="/contact"
                 id="hero-cta-help-link"
@@ -58,8 +58,8 @@ export default function HomeHero() {
             </div>
 
             {/* Quick Help */}
-            <div className="pt-6 border-t border-white/15">
-              <span className="text-xs font-bold uppercase tracking-wider text-teal-200 block mb-3">
+            <div className="animate-hero-cta pt-6 border-t border-white/15">
+              <span className="text-xs font-bold uppercase tracking-wider text-sand block mb-3">
                 Quick Help
               </span>
               <div className="flex flex-wrap gap-3">
@@ -93,7 +93,8 @@ export default function HomeHero() {
                     alt="Pediatric kidney care and medical support"
                     fill
                     priority
-                    className="object-cover object-top"
+                    className="parallax-image object-cover object-top"
+                    data-parallax-speed="0.08"
                     sizes="(max-width: 768px) 100vw, 45vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />

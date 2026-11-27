@@ -68,26 +68,26 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-xs">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-18 sm:h-22 py-1.5">
             
             {/* Logo Area */}
-            <Link href="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden transition-transform group-hover:scale-105 shrink-0 bg-white">
+            <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 sm:gap-3.5 group">
+              <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0 bg-white shadow-xs ring-1 ring-gray-100">
                 <Image
                   src="/logo.jpg"
                   alt="Pediatric Kidney Foundation"
                   fill
-                  sizes="48px"
-                  className="object-contain"
+                  sizes="56px"
+                  className="object-contain p-0.5"
                   priority
                 />
               </div>
               <div>
-                <span className="block text-navy font-extrabold text-lg sm:text-xl leading-none uppercase tracking-tighter">
+                <span className="block text-navy font-extrabold text-xl sm:text-2xl leading-none uppercase tracking-tighter">
                   PKF
                 </span>
-                <span className="block text-[8px] sm:text-[10px] text-teal font-semibold uppercase tracking-wider sm:tracking-widest">
+                <span className="block text-[9px] sm:text-[10px] text-teal font-semibold uppercase tracking-wider sm:tracking-widest mt-1">
                   Pediatric Kidney Foundation
                 </span>
               </div>
@@ -311,19 +311,19 @@ export default function Header() {
             className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col z-50 overflow-y-auto"
           >
             {/* Header inside drawer */}
-            <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-off-white">
+            <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-off-white">
               <Link
                 href="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2.5"
+                className="flex items-center gap-3"
               >
-                <div className="relative w-8 h-8 rounded-lg overflow-hidden shrink-0 bg-white">
+                <div className="relative w-10 h-10 rounded-xl overflow-hidden shrink-0 bg-white ring-1 ring-gray-100">
                   <Image
                     src="/logo.jpg"
                     alt="Pediatric Kidney Foundation"
                     fill
-                    sizes="32px"
-                    className="object-contain"
+                    sizes="40px"
+                    className="object-contain p-0.5"
                   />
                 </div>
                 <div>

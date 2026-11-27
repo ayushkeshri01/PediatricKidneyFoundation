@@ -1,15 +1,38 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy: #21443F;
+  --color-teal: #2E7D6E;
+  --color-turquoise: #A9CDBA;
+  --color-sage: #C9D3B4;
+  --color-coral: #B25C3C;
+  --color-warm-white: #FCF8F2;
+  --color-off-white: #F5EDE1;
+  --color-charcoal: #342F29;
+  --color-sand: #E9D8C3;
+
+  --color-gray-50: #FBF8F3;
+  --color-gray-100: #F3EDE4;
+  --color-gray-200: #E7DDD0;
+  --color-gray-300: #D6C8B6;
+  --color-gray-400: #B6A793;
+  --color-gray-500: #8F806D;
+  --color-gray-600: #6E6152;
+  --color-gray-700: #554A3F;
+  --color-gray-800: #3B342D;
+  --color-gray-900: #26211D;
+}
+
 @layer base {
   :root {
-    --navy: #1E3A5F;
-    --teal: #0D7377;
-    --turquoise: #5E9CA0;
-    --sage: #B8D4BD;
-    --warm-white: #FAFAF8;
-    --off-white: #F5F3F0;
-    --charcoal: #2C2C2C;
-    --coral: #E8714B;
+    --navy: var(--color-navy);
+    --teal: var(--color-teal);
+    --turquoise: var(--color-turquoise);
+    --sage: var(--color-sage);
+    --warm-white: var(--color-warm-white);
+    --off-white: var(--color-off-white);
+    --charcoal: var(--color-charcoal);
+    --coral: var(--color-coral);
   }
 
   body {
@@ -51,33 +74,52 @@
 .bg-off-white { background-color: var(--off-white); }
 
 /* Animation System */
-.reveal {
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.stagger-item {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, opacity;
 }
 
-.reveal.active {
+.reveal { transform: translateY(40px) scale(0.98); filter: blur(4px); }
+.reveal-left { transform: translateX(-56px); filter: blur(4px); }
+.reveal-right { transform: translateX(56px); filter: blur(4px); }
+.reveal-scale { transform: scale(0.86) rotate(-2deg); filter: blur(5px); }
+.stagger-item { transform: translateY(28px) scale(0.96); }
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active,
+.stagger-item.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  filter: none;
 }
 
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.stagger-item.active {
+  transition: opacity 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.65s ease-out;
 }
 
-.reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.reveal-left.active, .reveal-right.active {
-  opacity: 1;
-  transform: translateX(0);
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: linear-gradient(to right, var(--teal), var(--turquoise), var(--coral));
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(46, 125, 110, 0.5);
 }
 
 @keyframes slideInRight {
@@ -111,18 +153,6 @@
 .animate-hero-cta {
   animation: fadeIn 0.8s ease-out 0.8s forwards;
   opacity: 0;
-}
-
-.stagger-item {
-  opacity: 0;
-  transform: translateY(20px);
-  will-change: transform, opacity;
-}
-
-.stagger-item.active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Hover Effects */
@@ -159,13 +189,24 @@
   transition: color 0.3s ease;
 }
 
+header {
+  transition: box-shadow 0.4s ease, background-color 0.4s ease;
+}
+
+header.header-scrolled {
+  box-shadow: 0 12px 32px -16px rgba(33, 68, 63, 0.35);
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+}
+
 .parallax-image-container {
   overflow: hidden;
   border-radius: 1rem;
 }
 
 .parallax-image {
-  transition: transform 0.1s linear;
+  --parallax-y: 0px;
+  transform: translate3d(0, var(--parallax-y), 0) scale(1.18);
   will-change: transform;
 }
 
@@ -187,11 +228,18 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, .reveal, .stagger-item, .animate-hero-title, .animate-hero-text, .animate-hero-cta {
+  *, .reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-item, .animate-hero-title, .animate-hero-text, .animate-hero-cta {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+  }
+  .parallax-image {
+    transform: none !important;
+  }
+  .scroll-progress {
+    display: none;
   }
   #renal-canvas-container {
     display: none;
